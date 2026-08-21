@@ -1,0 +1,23 @@
+{
+  "name": "programacionweb",
+  "version": "1.0.0",
+  "description": "Inicializacion del proyecto",
+  "homepage": "https://github.com/nolasko7/ProgWeb#readme",
+  "bugs": {
+    "url": "https://github.com/nolasko7/ProgWeb/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nolasko7/ProgWeb.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

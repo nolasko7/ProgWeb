@@ -2,3 +2,7 @@
 
 @source "../../views";
 
+.barrita-login {
+    @apply w-full h-16 bg-mist-100;
+}
+

@@ -4,55 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
   <%- include('../partials/header') %>
-  <section class="register-module">
-    
-  <h1>MiEcommerce</h1>  
-  <h2>¡Registrateee!</h2>
+  <main class="body-main-class relative flex-1">
 
-  <form action="/register" method="GET">
-    <p>
-      <label for="name">Nombre</label>
-      <input 
-        type="text" 
-        id="name"
-        name="name" 
-        placeholder="Tu nombre gato" 
-        required 
-      />
-    </p>
+        
+        <div class="bg-[#44C79A] h-64 "></div>
 
-    <p>
-      <label for="email">Email</label>
-      <input 
-        type="email" 
-        id="email"
-        name="email" 
-        placeholder="Tu email(acordate del @ gil)" 
-        required 
-      />
-    </p>
+        <div class="body-class-caja_register -mt-40 relative z-10 mx-auto">
 
-    <p>
-      <label for="password">Contraseña</label>
-      <input 
-        type="password" 
-        id="password"
-        name="password" 
-        placeholder="Tu nueva contraseña" 
-        required 
-      />
-    </p>
+            <h1 class="mb-10 text-3xl">¡Bienvenido!</h1>
 
-    <button type="submit">Registrarse</button>
-  </form>
-  <p class="login-link">
-    ¿Tenes una cuenta existente? <a href="/login">Inicia Sesión</a>
-  </p>
+            <form action="/register" method="GET" class="flex flex-col items-start w-full">
+                <input class="body-class-caja_register_elemento_a" type="text" name="Nombre" id="Nombre" placeholder="Ingrese su nombre" required>
+                <input class="body-class-caja_register_elemento_a" type="email" name="Email" id="Email" placeholder="Ingresa tu email" required>
+                <input class="body-class-caja_register_elemento_a" type="password" name="password" id="Contraseña" placeholder="Ingresa tu contraseña" required>
+                <button type="submit" class="my-3 w-full text-gray-50 bg-mist-600 text-center rounded-full py-2">Registrarse</button>
 
-  </section>
+            </form>
+
+        </div>
+
+        <p class="text-center mt-10  pb-10">¿Tenes una cuenta existente?<a class="underline underline-offset-4"href="/login"> Inicia Sesión</a></p>
+
+    </main>
+
   <%- include('../partials/footer') %>
 </body>
 </html>

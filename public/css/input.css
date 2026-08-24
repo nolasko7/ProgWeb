@@ -17,24 +17,12 @@
     @apply bg-[#E5E5E5]
 }
 
-.body-class-caja_register {
+.body-class-caja_GU {
 
-    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgba(0, 0, 0, 0.3)]
+    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgb(0_0_0_/_0.3)]
 }
 
-.body-class-caja_register_elemento_a {
+.body-class-caja_GU_elemento_a {
 
     @apply my-4 bg-white border-2 border-gray-300 rounded-full w-full p-2
-}
-
-.body-class-caja_login{
- 
-    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgba(0,0,0,0.3)]
- 
-}
- 
-.body-class-caja_login_elementos_email_contraseña{
- 
-    @apply my-4 bg-white border-2 border-gray-300 rounded-full w-full p-4
- 
 }

@@ -11,7 +11,7 @@
 
 </head>
 
-    <body>
+    <body class="bg-[#F3F1F3] min-h-screen flex flex-col">
 
     <header>
         <div class="header-class header-class-texto">
@@ -19,10 +19,10 @@
         </div>
     </header>
 
-    <main class="body-main-class relative">
+    <main class="body-main-class relative flex-1">
 
         
-        <div class="bg-[#44C79A] h-64"></div>
+        <div class="bg-[#44C79A] h-64 "></div>
 
         <div class="body-class-caja_login -mt-40 relative z-10 mx-auto">
 
@@ -38,22 +38,41 @@
 
         </div>
 
-        <p class="text-center mt-10 pb-10">No tienes cuenta?<a class="underline underline-offset-4"href="register.ejs"> Registrate</a></p>
+        <p class="text-center mt-10  pb-10">No tienes cuenta?<a class="underline underline-offset-4"href="register.ejs"> Registrate</a></p>
 
     </main>
 
-    <footer>
+ <footer>
 
-        <img src="img/logo.png" alt="logo" width="50px" height="50px">
-        <img src="img/facebook.png" alt="facebook" width="50px" height="50px">
-        <img src="img/instagram.png" alt="instagram" width="50px" height="50px">
-        <p> © MiEcommerce. Todos los derechos reservados.</p>
-        <img src="img/twitter.png" alt="twitter" width="50px" height="50px">
-        <p>App store </p>
-        <img src="img/linkedin.png" alt="linkedin" width="50px" height="50px">
-        <p>Google Play</p>
+    <hr class="border border-gray-300">
+    
+    <div class="grid grid-cols-3 items-center bg-[#F3F1F3] h-32 px-32">
 
-    </footer>
+        <div class="flex flex-row items-center gap-2 justify-start">
+            <a href="#"><img src="https://pbs.twimg.com/profile_images/1520695854/50pxhead_400x400.png" alt="logo" width="25" height="25"></a>
+            <a href="#"><img src="https://pbs.twimg.com/profile_images/1520695854/50pxhead_400x400.png" alt="facebook" width="25" height="25"></a>
+            <a href="#"><img src="https://pbs.twimg.com/profile_images/1520695854/50pxhead_400x400.png" alt="instagram" width="25" height="25"></a>
+            <a href="#"><img src="https://pbs.twimg.com/profile_images/1520695854/50pxhead_400x400.png" alt="instagram" width="25" height="25"></a>
+        </div>
+
+        <div class="text-center">
+            <p class="text-gray-400">© MiEcommerce. Todos los derechos reservados.</p>
+        </div>
+
+        <div class="flex flex-row items-center gap-4 justify-end">
+            <div class="flex flex-row items-center gap-2">
+                <a href="#" class="flex flex-row items-center gap-2"><img src="https://pbs.twimg.com/profile_images/1520695854/50pxhead_400x400.png" alt="twitter" width="25" height="25">
+                <p class="text-gray-400" >App store</p></a>
+            </div>
+
+            <div>
+                <a href="#" class="flex flex-row items-center gap-2"><img src="https://pbs.twimg.com/profile_images/1520695854/50pxhead_400x400.png" alt="linkedin" width="25" height="25">
+                <p class="text-gray-400" >Google Play</p></a>
+            </div>
+        </div>
+
+    </div>
+</footer>
 
     </body>
 

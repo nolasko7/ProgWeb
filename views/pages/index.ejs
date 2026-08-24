@@ -10,7 +10,7 @@
 
 <body>
     <main class="page-home">
-        <section class="section1">
+        <section class="bg-[#E5E5E5] h-[100vh]">
             <h1 class="text-4xl font-bold mb-2 text-gray-900 flex items-center justify-center">
                 Bienvenido a MiEcommerce
             </h1>
@@ -18,34 +18,50 @@
                 Explora nuestra amplia selección de productos tecnológicos y encuentra lo que necesitas.
             </p>
 
-            <section class="grid grid-flow-col mt-15 gap-4 pl-80 pr-80 justify-center ">
+            <section class="mt-15 flex flex-row justify-center items-center ">
                 <div
-                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
-                    <p class="text-xl text-white font-bold text-center mt-4">Electronica</p>
+                    class="w-32 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Electronica.png" alt="Electronica" class="w-8 h-8 mb-2 object-contain ">
+                    <p class="text-white text-sm text-center text-lg font-bold">Electronica</p>
                 </div>
                 <div
-                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
-                    <p class="text-xl text-white font-bold text-center mt-4">Alimentos</p>
+                    class="w-32 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Alimentos.png" alt="Alimentos" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Alimentos</p>
                 </div>
                 <div
-                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
-                    <p class="text-xl text-white font-bold text-center mt-4">Ropa</p>
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Bebidas.png" alt="Bebidas" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Bebidas</p>
                 </div>
                 <div
-                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
-                    <p class="text-xl text-white font-bold text-center mt-4">Hogar</p>
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Automotor.png" alt="Automotor" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Automotor</p>
                 </div>
                 <div
-                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
-                    <p class="text-xl text-white font-bold text-center mt-4">Muebles</p>
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Hogar.png" alt="Hogar" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Hogar</p>
                 </div>
                 <div
-                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
-                    <p class="text-xl text-white font-bold text-center mt-4">Deportes</p>
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Indumentaria.png" alt="Indumentaria" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Indumentaria</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Juegos.png" alt="Juegos" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Juegos</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Otros.png" alt="Otros" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Otros</p>
                 </div>
             </section>
 
-            <section class="section2 mt-70">
+            <section class="section2 mt-15">
                 <div class="contenedor-verde">
                     <div class="contenedor-tarjetas">
                         <% productosTec.forEach(producto=> { %>
@@ -66,8 +82,59 @@
                     <button class="btn-primario">
                         Explorar todos nuestros productos
                     </button>
+
                 </div>
             </section>
+
+            <section class="bg-[#E5E5E5] h-[100vh]">
+                <p class="text-gray-600 text-xl mt-10 mb-6 flex pl-20">Te pueden interesar..</p>
+                <text class="flex justify-center"> aca irian productos que le pueden interesar al usuario</text>
+
+                <section class="mt-45 flex flex-row justify-center items-center ">
+                <div
+                    class="w-32 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Electronica.png" alt="Electronica" class="w-8 h-8 mb-2 object-contain ">
+                    <p class="text-white text-sm text-center text-lg font-bold">Electronica</p>
+                </div>
+                <div
+                    class="w-32 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Alimentos.png" alt="Alimentos" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Alimentos</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Bebidas.png" alt="Bebidas" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Bebidas</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Automotor.png" alt="Automotor" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Automotor</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Hogar.png" alt="Hogar" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Hogar</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Indumentaria.png" alt="Indumentaria" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Indumentaria</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Juegos.png" alt="Juegos" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Juegos</p>
+                </div>
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400 border-r border-white/70 flex items-center flex-col">
+                    <img src="/images/Otros.png" alt="Otros" class="w-8 h-8 mb-2 object-contain">
+                    <p class="text-white text-sm text-center text-lg font-bold">Otros</p>
+                </div>
+            </section>
+
+            </section>
+
         </section>
 
 

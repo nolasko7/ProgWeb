@@ -8,6 +8,7 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+<<<<<<< HEAD
     --color-green-400: oklch(79.2% 0.209 151.711);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-600: oklch(44.6% 0.03 256.802);
@@ -28,6 +29,21 @@
     --radius-lg: 0.5rem;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+=======
+    --color-gray-50: oklch(98.5% 0.002 247.839);
+    --color-gray-300: oklch(87.2% 0.01 258.338);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
+    --color-mist-600: oklch(45% 0.017 213.2);
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --container-sm: 24rem;
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --font-weight-black: 900;
+    --radius-2xl: 1rem;
+>>>>>>> us4
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -181,6 +197,7 @@
   }
 }
 @layer utilities {
+<<<<<<< HEAD
   .left-0 {
     left: 0px;
   }
@@ -192,10 +209,27 @@
   }
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
+=======
+  .relative {
+    position: relative;
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .my-3 {
+    margin-block: calc(var(--spacing) * 3);
+  }
+  .-mt-40 {
+    margin-top: calc(var(--spacing) * -40);
+>>>>>>> us4
   }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
+<<<<<<< HEAD
   .mt-15 {
     margin-top: calc(var(--spacing) * 15);
   }
@@ -237,10 +271,21 @@
   }
   .h-8 {
     height: calc(var(--spacing) * 8);
+=======
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+>>>>>>> us4
   }
   .h-20 {
     height: calc(var(--spacing) * 20);
   }
+<<<<<<< HEAD
   .h-32 {
     height: calc(var(--spacing) * 32);
   }
@@ -264,6 +309,22 @@
   }
   .resize {
     resize: both;
+=======
+  .h-64 {
+    height: calc(var(--spacing) * 64);
+  }
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+>>>>>>> us4
   }
   .flex-col {
     flex-direction: column;
@@ -274,6 +335,7 @@
   .items-center {
     align-items: center;
   }
+<<<<<<< HEAD
   .justify-center {
     justify-content: center;
   }
@@ -282,11 +344,31 @@
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
+=======
+  .items-start {
+    align-items: flex-start;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .justify-start {
+    justify-content: flex-start;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+>>>>>>> us4
   }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+<<<<<<< HEAD
   .border-r {
     border-right-style: var(--tw-border-style);
     border-right-width: 1px;
@@ -323,10 +405,33 @@
   }
   .pl-20 {
     padding-left: calc(var(--spacing) * 20);
+=======
+  .border-gray-300 {
+    border-color: var(--color-gray-300);
+  }
+  .bg-\[\#44C79A\] {
+    background-color: #44C79A;
+  }
+  .bg-\[\#F3F1F3\] {
+    background-color: #F3F1F3;
+  }
+  .bg-mist-600 {
+    background-color: var(--color-mist-600);
+  }
+  .px-32 {
+    padding-inline: calc(var(--spacing) * 32);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .pb-10 {
+    padding-bottom: calc(var(--spacing) * 10);
+>>>>>>> us4
   }
   .text-center {
     text-align: center;
   }
+<<<<<<< HEAD
   .text-4xl {
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
@@ -362,10 +467,26 @@
   }
   .text-white {
     color: var(--color-white);
+=======
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .font-black {
+    --tw-font-weight: var(--font-weight-black);
+    font-weight: var(--font-weight-black);
+  }
+  .text-gray-50 {
+    color: var(--color-gray-50);
+  }
+  .text-gray-400 {
+    color: var(--color-gray-400);
+>>>>>>> us4
   }
   .underline {
     text-decoration-line: underline;
   }
+<<<<<<< HEAD
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -438,6 +559,47 @@
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
+=======
+  .underline-offset-4 {
+    text-underline-offset: 4px;
+  }
+}
+.header-class {
+  background-color: #F3F1F3;
+  padding: calc(var(--spacing) * 4);
+}
+.header-class-texto {
+  font-family: var(--font-sans);
+  font-size: var(--text-2xl);
+  line-height: var(--tw-leading, var(--text-2xl--line-height));
+  color: #44C79A;
+}
+.body-main-class {
+  background-color: #F3F1F3;
+}
+.body-class-caja_login {
+  display: flex;
+  max-width: var(--container-sm);
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-white);
+  padding-inline: calc(var(--spacing) * 7);
+  padding-top: calc(var(--spacing) * 10);
+  padding-bottom: calc(var(--spacing) * 10);
+  --tw-shadow: 0 8px 12px 0 var(--tw-shadow-color, rgba(0,0,0,0.3));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.body-class-caja_login_elementos_email_contraseña {
+  margin-block: calc(var(--spacing) * 4);
+  width: 100%;
+  border-radius: calc(infinity * 1px);
+  border-style: var(--tw-border-style);
+  border-width: 2px;
+  border-color: var(--color-gray-300);
+  background-color: var(--color-white);
+  padding: calc(var(--spacing) * 4);
+>>>>>>> us4
 }
 @property --tw-border-style {
   syntax: "*";
@@ -513,6 +675,7 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+<<<<<<< HEAD
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
@@ -522,6 +685,8 @@
   syntax: "*";
   inherits: false;
 }
+=======
+>>>>>>> us4
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -541,9 +706,15 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+<<<<<<< HEAD
       --tw-outline-style: solid;
       --tw-duration: initial;
     }
   }
 }
 
+=======
+    }
+  }
+}
+>>>>>>> us4

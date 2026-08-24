@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiEcommerce</title>
     <link rel="stylesheet" href="/css/output.css">
 </head>
+
 <body>
     <main class="page-home">
         <section class="section1">
@@ -17,22 +19,28 @@
             </p>
 
             <section class="grid grid-flow-col mt-15 gap-4 pl-80 pr-80 justify-center ">
-                <div class = "w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
                     <p class="text-xl text-white font-bold text-center mt-4">Electronica</p>
                 </div>
-                <div class = "w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
                     <p class="text-xl text-white font-bold text-center mt-4">Alimentos</p>
                 </div>
-                <div class = "w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
                     <p class="text-xl text-white font-bold text-center mt-4">Ropa</p>
                 </div>
-                <div class = "w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
                     <p class="text-xl text-white font-bold text-center mt-4">Hogar</p>
                 </div>
-                <div class = "w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
                     <p class="text-xl text-white font-bold text-center mt-4">Muebles</p>
                 </div>
-                <div class = "w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
+                <div
+                    class="w-30 h-20 bg-gray-900 p-2 rounded cursor-pointer transition-colors duration-300 hover:bg-green-400">
                     <p class="text-xl text-white font-bold text-center mt-4">Deportes</p>
                 </div>
             </section>
@@ -40,16 +48,20 @@
             <section class="section2 mt-70">
                 <div class="contenedor-verde">
                     <div class="contenedor-tarjetas">
-                        <% productosTec.forEach(producto => { %>
-                        <div class="bg-black rounded-lg shadow-md p-8 border border-gray-200 flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
-                            <div class="bg-checkerboard w-32 h-32 rounded-lg flex items-center justify-center mb-4">
-                                <span class="text-green-400 text-sm">Sin imagen</span>
+                        <% productosTec.forEach(producto=> { %>
+                            <div
+                                class="bg-black rounded-lg shadow-md p-8 border border-gray-200 flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+                                <div class="bg-checkerboard w-32 h-32 rounded-lg flex items-center justify-center mb-4">
+                                    <span class="text-green-400 text-sm">Sin imagen</span>
+                                </div>
+                                <h3 class="font-semibold text-lg mb-2 text-green-400">
+                                    <%= producto.nombre %>
+                                </h3>
+                                <p class="text-white mb-4">$<%= producto.precio %>
+                                </p>
+                                <button class="btn-primario">Agregar al carrito</button>
                             </div>
-                            <h3 class="font-semibold text-lg mb-2 text-green-400"><%= producto.nombre %></h3>
-                            <p class="text-white mb-4">$<%= producto.precio %></p>
-                            <button class="btn-primario">Agregar al carrito</button>
-                        </div>
-                        <% }) %>
+                            <% }) %>
                     </div>
                     <button class="btn-primario">
                         Explorar todos nuestros productos
@@ -58,9 +70,10 @@
             </section>
         </section>
 
-        
 
-        
+
+
     </main>
 </body>
+
 </html>

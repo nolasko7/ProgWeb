@@ -232,6 +232,9 @@
   .-mt-40 {
     margin-top: calc(var(--spacing) * -40);
   }
+  .-mt-60 {
+    margin-top: calc(var(--spacing) * -60);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -328,9 +331,6 @@
   .cursor-pointer {
     cursor: pointer;
   }
-  .resize {
-    resize: both;
-  }
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -370,9 +370,6 @@
   .rounded {
     border-radius: 0.25rem;
   }
-  .rounded-2xl {
-    border-radius: var(--radius-2xl);
-  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -393,9 +390,6 @@
   }
   .border-gray-300 {
     border-color: var(--color-gray-300);
-  }
-  .border-white {
-    border-color: var(--color-white);
   }
   .border-white\/70 {
     border-color: color-mix(in srgb, #fff 70%, transparent);
@@ -423,9 +417,6 @@
   }
   .bg-mist-600 {
     background-color: var(--color-mist-600);
-  }
-  .bg-white {
-    background-color: var(--color-white);
   }
   .object-contain {
     object-fit: contain;
@@ -633,7 +624,7 @@
 .body-main-class {
   background-color: #E5E5E5;
 }
-.body-class-caja_register {
+.body-class-caja_GU {
   display: flex;
   max-width: var(--container-sm);
   flex-direction: column;
@@ -643,10 +634,10 @@
   padding-inline: calc(var(--spacing) * 7);
   padding-top: calc(var(--spacing) * 10);
   padding-bottom: calc(var(--spacing) * 10);
-  --tw-shadow: 0 8px 12px 0 var(--tw-shadow-color, rgba(0,0,0,0.3));
+  --tw-shadow: 0 8px 12px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.3));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 }
-.body-class-caja_register_elemento_a {
+.body-class-caja_GU_elemento_a {
   margin-block: calc(var(--spacing) * 4);
   width: 100%;
   border-radius: calc(infinity * 1px);
@@ -831,6 +822,7 @@
 @property --tw-duration {
   syntax: "*";
   inherits: false;
+  initial-value: 0;
 }
 @property --tw-scale-x {
   syntax: "*";
@@ -882,7 +874,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-duration: initial;
       --tw-scale-x: 1;
       --tw-scale-y: 1;

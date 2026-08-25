@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="/css/output.css">
 </head>
 
-<body>
-    <main class="page-home">
-        <section class="bg-[#E5E5E5] h-[100vh]">
+<body class="bg-[#F3F1F3] min-h-screen flex flex-col">
+
+    <%- include('../partials/header') %> 
+    
+    <main class="page-home flex-1">
+        <section class="bg-[#E5E5E5] min-h-screen py-10">
             <h1 class="text-4xl font-bold mb-2 text-gray-900 flex items-center justify-center">
                 Bienvenido a MiEcommerce
             </h1>
@@ -64,20 +67,9 @@
             <section class="section2 mt-15">
                 <div class="contenedor-verde">
                     <div class="contenedor-tarjetas">
-                        <% productosTec.forEach(producto=> { %>
-                            <div
-                                class="bg-black rounded-lg shadow-md p-8 border border-gray-200 flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
-                                <div class="bg-checkerboard w-32 h-32 rounded-lg flex items-center justify-center mb-4">
-                                    <span class="text-green-400 text-sm">Sin imagen</span>
-                                </div>
-                                <h3 class="font-semibold text-lg mb-2 text-green-400">
-                                    <%= producto.nombre %>
-                                </h3>
-                                <p class="text-white mb-4">$<%= producto.precio %>
-                                </p>
-                                <button class="btn-primario">Agregar al carrito</button>
-                            </div>
-                            <% }) %>
+                        <% productosTec.forEach(producto => { %>
+                            <%- include('../partials/productCard', { producto: producto }) %>
+                        <% }) %>
                     </div>
                     <button class="btn-primario">
                         Explorar todos nuestros productos
@@ -85,8 +77,9 @@
 
                 </div>
             </section>
+        </section>
 
-            <section class="bg-[#E5E5E5] h-[100vh]">
+        <section class="bg-[#E5E5E5] min-h-screen py-10">
                 <p class="text-gray-600 text-xl mt-10 mb-6 flex pl-20">Te pueden interesar..</p>
                 <text class="flex justify-center"> aca irian productos que le pueden interesar al usuario</text>
 
@@ -132,15 +125,9 @@
                     <p class="text-white text-sm text-center text-lg font-bold">Otros</p>
                 </div>
             </section>
-
-            </section>
-
         </section>
-
-
-
-
     </main>
+    <%- include('../partials/footer') %>
 </body>
 
 </html>

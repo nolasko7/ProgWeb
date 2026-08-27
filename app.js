@@ -1,5 +1,7 @@
 const express = require('express')
 
+const routerCategory = require('./routes/routesCategory');
+const categories = require('./public/data/categories');
 const app = express();
 
 const path = require("path");
@@ -8,7 +10,6 @@ const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-//ROUTES -
 
 app.get("/", (req, res) => {
     const productosTec = [{
@@ -27,7 +28,7 @@ app.get("/", (req, res) => {
         precio: 499.99,
         imagen: "https://images.unsplash.com/photo-1517336714731-4896894b5ce9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bm90ZWJvb2t8ZW58MHx8MHx8fDA%3D"
     },];
-    res.render("pages/index", { productosTec });
+    res.render("pages/index", { productosTec, categories });
 });
 
 app.get("/product/:id", (req, res) => {
@@ -49,6 +50,8 @@ app.get("/register", (req, res) => {
 app.get("/checkout", (req, res) => {
     res.render("pages/checkout");
 });
+
+app.use("/category", routerCategory);
 
 //LISTEN
 app.listen(PORT,

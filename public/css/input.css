@@ -37,7 +37,7 @@
 }
 
 .contenedor-verde {
-    @apply bg-emerald-50/50 py-12 px-6 rounded-3xl max-w-7xl mx-auto my-8 border border-emerald-100/50 flex flex-col items-center gap-8
+    @apply bg-emerald-50/50 py-12 px-6 rounded-3xl max-w-7xl mx-auto my-2 border border-emerald-100/50 flex flex-col items-center gap-8
 }
 
 .contenedor-tarjetas {

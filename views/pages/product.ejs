@@ -12,13 +12,17 @@
     <%- include('../partials/header') %>
         <div class="max-w-6xl mx-auto px-4 py-8">
             <nav aria-label="breadcrumb" class="text-sm text-gray-700 mb-4 flex items-center gap-1 font-medium">
-                <a href="/" class="text-gray-700 no-underline hover:underline flex items-center gap-1">
+                <div class="my-4 w-32">
+
+            <a href="/" class="text-gray-700 no-underline hover:underline flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2.5" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
-                    Volver al listado
-                </a>
+                    Volver al inicio
+            </a>
+
+            </div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     stroke-width="2.5" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -65,69 +69,21 @@
                 </div>
             </div>
             <h2 class="text-2xl mt-8">Tambien te puede interesar</h2>
+
+
             <div class="grid grid-cols-4 gap-2 mt-4">
-                <div class="border border-gray-300 rounded-xl p-3 bg-white shadow-xl">
-                    <img src="https://placehold.co/300x300" alt="Coca Cola Lata 220mL Pack Original x8"
-                        class="w-full h-68 object-cover">
-                    <div class="flex justify-between gap-2 mt-2">
-                        <p class="text-sm font-semibold text-gray-900 ">Coca Cola Lata 220mL Pack Original x8</p>
-                        <p class="text-sm border-l border-gray-200 pl-2 leading-tight w-55">
-                            <span class="font-semibold text-gray-900">760</span>
-                            <span class="block text-[7px] text-gray-500 uppercase">Puntos</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="border border-gray-300 rounded-xl p-3 bg-white shadow-xl">
-                    <img src="https://placehold.co/300x300" alt="Coca Cola Lata 220mL Pack Original x8"
-                        class="w-full h-68 object-cover">
-                    <div class="flex justify-between gap-2 mt-2">
-                        <p class="text-sm font-semibold text-gray-900 ">Coca Cola Lata 220mL Pack Original x8</p>
-                        <p class="text-sm border-l border-gray-200 pl-2 leading-tight w-55">
-                            <span class="font-semibold text-gray-900">760</span>
-                            <span class="block text-[7px] text-gray-500 uppercase">Puntos</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="border border-gray-300 rounded-xl p-3 bg-white shadow-xl">
-                    <img src="https://placehold.co/300x300" alt="Coca Cola Lata 220mL Pack Original x8"
-                        class="w-full h-68 object-cover">
-                    <div class="flex justify-between gap-2 mt-2">
-                        <p class="text-sm font-semibold text-gray-900 ">Coca Cola Lata 220mL Pack Original x8</p>
-                        <p class="text-sm border-l border-gray-200 pl-2 leading-tight w-55">
-                            <span class="font-semibold text-gray-900">760</span>
-                            <span class="block text-[7px] text-gray-500 uppercase">Puntos</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="border border-gray-300 rounded-xl p-3 bg-white shadow-xl">
-                    <img src="https://placehold.co/300x300" alt="Coca Cola Lata 220mL Pack Original x8"
-                        class="w-full h-68 object-cover">
-                    <div class="flex justify-between gap-2 mt-2">
-                        <p class="text-sm font-semibold text-gray-900 ">Coca Cola Lata 220mL Pack Original x8</p>
-                        <p class="text-sm border-l border-gray-200 pl-2 leading-tight w-55">
-                            <span class="font-semibold text-gray-900">760</span>
-                            <span class="block text-[7px] text-gray-500 uppercase">Puntos</span>
-                        </p>
-                    </div>
-                </div>
+                
+                <%- include(`../partials/CartasMuestraProductos`)%>
+                <%- include(`../partials/CartasMuestraProductos`)%>
+                <%- include(`../partials/CartasMuestraProductos`)%>
+                <%- include(`../partials/CartasMuestraProductos`)%>
+               
             </div>
-            <div
-                class="flex w-fit overflow-hidden items-center mt-10 mx-auto px-2 bg-gray-900 border border-gray-300 rounded-4xl shadow-md hover:shadow-xl transition-all duration-300 h-full">
-                <section class="flex flex-row justify-center items-center ">
-                    <% categories.forEach(category=> { %>
-                        <a href="/category/<%= category.name %>">
-                            <div
-                                class="w-32 h-20 bg-gray-900 p-1 cursor-pointer transition-colors duration-300 hover:bg-green-400 flex items-center flex-col">
-                                <img src="<%= category.photo %>" alt="<%= category.name %>"
-                                    class="w-8 h-8 mt-2 mb-1 object-contain ">
-                                <p class="text-white text-sm text-center text-lg font-bold">
-                                    <%= category.name %>
-                                </p>
-                            </div>
-                        </a>
-                        <% }) %>
-                </section>
-            </div>
+
+            <div class="my-4">
+           <%- include(`../partials/barraDeProductos`)%>
+           </div>
+
         </div>
         <%- include('../partials/footer') %>
 </body>

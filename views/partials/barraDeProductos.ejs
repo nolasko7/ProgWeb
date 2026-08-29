@@ -1,0 +1,12 @@
+<div class="flex w-fit max-w-full overflow-x-auto items-center mx-auto px-0 bg-gray-900 border border-gray-300 rounded-4xl shadow-md hover:shadow-xl transition-all duration-300 h-full">
+    <section class="flex flex-row justify-center items-center ">
+        <% categories.forEach(category => { %>
+            <a href="/category/<%= category.name %>">
+                 <div class="w-20 h-16 sm:w-24 sm:h-18 md:w-32 md:h-20 bg-gray-900 p-1 cursor-pointer transition-colors duration-300 hover:bg-green-400 flex items-center flex-col">
+                        <img src="<%= category.photo %>" alt="<%= category.name %>" class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mt-2 mb-1 object-contain ">
+                        <p class="text-white text-xs sm:text-sm md:text-lg text-center font-bold"><%= category.name %></p>
+                    </div>
+                    </a>
+                    <% }) %>
+    </section>  
+</div>

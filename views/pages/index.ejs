@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="/css/output.css">
 </head>
 
-<body class="bg-[#F3F1F3] min-h-screen flex flex-col">
+<body class="bg-[#E5E5E5] min-h-screen flex flex-col">
 
     <%- include('../partials/header') %> 
     
     <main class="page-home flex-1">
 
-      
-
-         
 
         <section class="bg-[#E5E5E5] min-h-screen py-10">
             <h1 class="text-4xl font-bold mb-2 text-gray-900 flex items-center justify-center">
@@ -25,19 +22,9 @@
             <p class="text-gray-600 mt-2 mb-6 flex items-center justify-center">
                 Explora nuestra amplia selección de productos tecnológicos y encuentra lo que necesitas.
             </p>
-            <div class="flex w-fit overflow-hidden items-center mx-auto px-2 bg-gray-900 border border-gray-300 rounded-4xl shadow-md hover:shadow-xl transition-all duration-300 h-full">
-                <section class="flex flex-row justify-center items-center ">
-                    <% categories.forEach(category => { %>
-                    <a href="/category/<%= category.name %>">
-                        <div
-                            class="w-32 h-20 bg-gray-900 p-1 cursor-pointer transition-colors duration-300 hover:bg-green-400 flex items-center flex-col">
-                            <img src="<%= category.photo %>" alt="<%= category.name %>" class="w-8 h-8 mt-2 mb-1 object-contain ">
-                            <p class="text-white text-sm text-center text-lg font-bold"><%= category.name %></p>
-                        </div>
-                    </a>
-                    <% }) %>
-                </section>  
-            </div>
+
+            <%- include(`../partials/barraDeProductos`)%>
+        
 
             <div class="bg-[#44C79A] h-60 w-full mt-10"></div>
 
@@ -46,11 +33,14 @@
                 <%- include(`../partials/publicidad`)  %>
                 <%- include(`../partials/publicidad`)  %>
                 
+                
             </div>
-            
 
             <section class="section2 mt-15">
+
+
                 <div class="contenedor-verde">
+                    <div class="flex items-end"><p class="text-black text-2xl w-6xl">Te pueden interesar...</p></div>
                     <div class="contenedor-tarjetas">
                         <% productosTec.forEach(producto => { %>
                             <%- include('../partials/productCard', { producto: producto }) %>
@@ -64,23 +54,27 @@
             </section>
         </section>
 
-        <section class="bg-[#E5E5E5] min-h-screen py-10">
-            <p class="text-gray-600 text-xl mt-10 mb-6 flex pl-20">Te pueden interesar..</p>
-            <text class="flex justify-center py-15"> aca irian productos que le pueden interesar al usuario</text>
+        <section class="section2 mt-15">
 
-            <div class="flex w-fit overflow-hidden items-center mx-auto px-2 bg-gray-900 border border-gray-300 rounded-4xl shadow-md hover:shadow-xl transition-all duration-300 h-full">
-                <section class="flex flex-row justify-center items-center ">
-                    <% categories.forEach(category => { %>
-                    <a href="/category/<%= category.name %>">
-                        <div
-                            class="w-32 h-20 bg-gray-900 p-1 cursor-pointer transition-colors duration-300 hover:bg-green-400 flex items-center flex-col">
-                            <img src="<%= category.photo %>" alt="<%= category.name %>" class="w-8 h-8 mt-2 mb-1 object-contain ">
-                            <p class="text-white text-sm text-center text-lg font-bold"><%= category.name %></p>
-                        </div>
-                    </a>
-                    <% }) %>
-                </section>  
-            </div>
+
+                <div class="contenedor-verde">
+                    <div class="flex items-end"><p class="text-black text-2xl w-6xl">Produtos mas pedidos</p></div>
+                    <div class="contenedor-tarjetas">
+                        <% productosTec.forEach(producto => { %>
+                            <%- include('../partials/productCard', { producto: producto }) %>
+                        <% }) %>
+                    </div>
+                    <button class="btn-primario">
+                        Explorar los productos mas pedidos
+                    </button>
+
+                </div>
+            </section>
+
+        <section class="bg-[#E5E5E5] min-h-screen py-10">
+
+            <%- include(`../partials/barraDeProductos`)%>
+
         </section>
     </main>
     <%- include('../partials/footer') %>

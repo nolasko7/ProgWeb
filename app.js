@@ -18,17 +18,17 @@ app.get("/", (req, res) => {
         id: 1,
         nombre: "Notebook Lenovo ThinkPad",
         precio: 499.99,
-        imagen: "https://images.unsplash.com/photo-1517336714731-4896894b5ce9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bm90ZWJvb2t8ZW58MHx8MHx8fDA%3D"
+        imagen: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80"
     }, {
         id: 2,
         nombre: "Smart TV Samsung 55 pulgadas",
         precio: 499.99,
-        imagen: "https://images.unsplash.com/photo-1517336714731-4896894b5ce9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bm90ZWJvb2t8ZW58MHx8MHx8fDA%3D"
+        imagen: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80"
     }, {
         id: 3,
         nombre: "Smartphone Xiaomi 128GB",
         precio: 499.99,
-        imagen: "https://images.unsplash.com/photo-1517336714731-4896894b5ce9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bm90ZWJvb2t8ZW58MHx8MHx8fDA%3D"
+        imagen: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80"
     },];
     res.render("pages/index", { productosTec, categories });
 });

@@ -14,33 +14,33 @@
     
     <main class="page-home flex-1">
 
-
-        <section class="bg-[#E5E5E5] min-h-screen py-10">
-            <h1 class="text-4xl font-bold mb-2 text-gray-900 flex items-center justify-center">
+        <section class="bg-[#E5E5E5] py-8 sm:py-10 px-4">
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-gray-900 flex items-center justify-center text-center">
                 Bienvenido a MiEcommerce
             </h1>
-            <p class="text-gray-600 mt-2 mb-6 flex items-center justify-center">
+            <p class="text-sm sm:text-base text-gray-600 mt-2 mb-6 flex items-center justify-center text-center max-w-2xl mx-auto">
                 Explora nuestra amplia selección de productos tecnológicos y encuentra lo que necesitas.
             </p>
 
-            <%- include(`../partials/barraDeProductos`)%>
+            <%- include(`../partials/barraDeProductos`) %>
         
-
-            <div class="bg-[#44C79A] h-60 w-full mt-10"></div>
-
-            <div class="flex justify-center items-center -mt-50 space-x-10">
-
-                <%- include(`../partials/publicidad`)  %>
-                <%- include(`../partials/publicidad`)  %>
-                
-                
+            <!-- Franja verde de fondo con cards de propaganda -->
+            <div class="relative mt-8 sm:mt-10 mb-8 sm:mb-12">
+                <!-- Fondo verde -->
+                <div class="bg-[#44C79A] w-full py-8 sm:py-10">
+                    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10">
+                        <%- include(`../partials/publicidad`) %>
+                        <%- include(`../partials/publicidad`) %>
+                    </div>
+                </div>
             </div>
 
-            <section class="section2 mt-15">
-
-
+            <!-- Sección: Te pueden interesar -->
+            <section class="section2 mt-10 sm:mt-15">
                 <div class="contenedor-verde">
-                    <div class="flex items-end"><p class="text-black text-2xl w-6xl">Te pueden interesar...</p></div>
+                    <div class="w-full max-w-6xl flex items-end">
+                        <p class="text-black text-xl sm:text-2xl">Te pueden interesar...</p>
+                    </div>
                     <div class="contenedor-tarjetas">
                         <% productosTec.forEach(producto => { %>
                             <%- include('../partials/productCard', { producto: producto }) %>
@@ -49,35 +49,35 @@
                     <button class="btn-primario">
                         Explorar todos nuestros productos
                     </button>
-
                 </div>
             </section>
         </section>
 
-        <section class="section2 mt-15">
-
-
-                <div class="contenedor-verde">
-                    <div class="flex items-end"><p class="text-black text-2xl w-6xl">Produtos mas pedidos</p></div>
-                    <div class="contenedor-tarjetas">
-                        <% productosTec.forEach(producto => { %>
-                            <%- include('../partials/productCard', { producto: producto }) %>
-                        <% }) %>
-                    </div>
-                    <button class="btn-primario">
-                        Explorar los productos mas pedidos
-                    </button>
-
+        <!-- Sección: Productos más pedidos -->
+        <section class="section2 mt-8 sm:mt-15 px-4">
+            <div class="contenedor-verde">
+                <div class="w-full max-w-6xl flex items-end">
+                    <p class="text-black text-xl sm:text-2xl">Productos mas pedidos</p>
                 </div>
-            </section>
-
-        <section class="bg-[#E5E5E5] min-h-screen py-10">
-
-            <%- include(`../partials/barraDeProductos`)%>
-
+                <div class="contenedor-tarjetas">
+                    <% productosTec.forEach(producto => { %>
+                        <%- include('../partials/productCard', { producto: producto }) %>
+                    <% }) %>
+                </div>
+                <button class="btn-primario">
+                    Explorar los productos mas pedidos
+                </button>
+            </div>
         </section>
+
+        <section class="bg-[#E5E5E5] py-8 sm:py-10 px-4">
+            <%- include(`../partials/barraDeProductos`) %>
+        </section>
+
     </main>
+
     <%- include('../partials/footer') %>
+
 </body>
 
 </html>

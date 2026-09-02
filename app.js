@@ -17,7 +17,8 @@ app.set("views", path.join(__dirname, "src/views"));
 
 app.get("/", (req, res) => {
     const productosSugeridos = [...products].sort(()=> Math.random()- 0.5).slice(0,5);
-    res.render("pages/index", { products: products.slice(0, 6), categories, productosSugeridos });
+    const productosMasPedidos = products.filter(p=>p.masPedido).slice(0,10);
+    res.render("pages/index", { products: products.slice(0, 6), categories, productosSugeridos,productosMasPedidos });
 });
 
 app.use("/products", routerProduct);

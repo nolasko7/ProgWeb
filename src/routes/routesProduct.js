@@ -1,7 +1,7 @@
 const express = require('express');
-const products = require('../public/data/products');
+const products = require('../../public/data/products');
 const router = express.Router();
-const categories = require('../public/data/categories');
+const categories = require('../../public/data/categories');
 
 module.exports = router;
 

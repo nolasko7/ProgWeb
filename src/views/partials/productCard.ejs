@@ -1,21 +1,24 @@
 <div class="bg-white border border-gray-300 rounded-2xl p-3 shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
     <div>
         <div class="relative aspect-square w-full overflow-hidden rounded-xl bg-gray-50 border-4 border-white shadow-md mb-4 group">
-            <img 
-                src="<%= producto.imagen || '/images/images.jpg' %>" 
-                alt="<%= producto.nombre %>" 
+            <a href="/products/<%= producto.id %>">
+                <img 
+                src="<%= producto.image || '/images/images.jpg' %>" 
+                alt="<%= producto.name %>" 
                 class="w-full h-full object-cover" 
                 loading="lazy"
-                onerror="this.onerror=null;this.src='/images/images.jpg';"
-            >
+                onerror="this.onerror=null;this.src='/images/images.jpg';">
+            </a>
         </div>
         <div class="flex flex-col">
-            <span class="text-xs font-semibold text-emerald-500 uppercase mb-1">Tecnología</span>
+            <span class="text-xs font-semibold text-emerald-500 uppercase mb-1">
+                <%= producto.category || 'Tecnología' %>
+            </span>
             <h3 class="font-bold text-gray-800 text-lg mb-2">
-                <%= producto.nombre %>
+                <%= producto.name %>
             </h3>
             <p class="text-2xl font-black text-gray-900">
-                <%= producto.precio %>
+                <%= producto.price %>
             </p>
             <p class="text-sm font-black text-gray-500 mb-4"> Puntos </p>
         </div>

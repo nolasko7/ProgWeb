@@ -8,5 +8,10 @@ module.exports = router;
 
 router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id);
-    res.render("pages/product", { product: products.find(p => p.id === id), categories });
+    const productoEncontrado = products.find(p => p.id === id);
+    if (productoEncontrado) {
+        res.render("pages/product", { product: productoEncontrado, categories });
+    } else {
+        res.status(404).render("pages/error", { code: 404, message: "Producto no encontrado", categories });
+    }
 })  

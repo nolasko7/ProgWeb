@@ -1,7 +1,7 @@
 const express = require('express')
 
-const routerCategory = require('./routes/routesCategory');
-const routerProduct = require('./routes/routesProduct');
+const routerCategory = require('./src/routes/routesCategory');
+const routerProduct = require('./src/routes/routesProduct');
 const products = require('./public/data/products');
 const categories = require('./public/data/categories');
 const app = express();
@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.set("views", path.join(__dirname, "src/views"));
+
 
 app.get("/", (req, res) => {
     const productosTec = [{
@@ -57,3 +59,11 @@ app.use("/category", routerCategory);
 app.listen(PORT,
     () => console.log("Server is Ready! 🫡")
 )
+
+app.use((req, res) => {
+    res.status(404).render('pages/error', {
+        code: 404,
+        message: 'Página no encontrada',
+        categories: categories
+    });
+})

@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@source "../../views";
+
+.header-class-texto {
+    @apply text-2xl font-sans text-[#44C79A];
+}
+
+.body-main-class {
+    @apply bg-[#E5E5E5];
+}
+
+.body-class-caja_GU {
+    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgb(0_0_0_/_0.3)];
+}
+
+.body-class-caja_GU_elemento_a {
+    @apply my-4 bg-white border-2 border-gray-300 rounded-full w-full p-2;
+}
+
+.body-class-caja_login{
+    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgba(0,0,0,0.3)];
+}
+ 
+.body-class-caja_login_elementos_email_contraseña{
+    @apply my-4 bg-white border-2 border-gray-300 rounded-full w-full p-4;
+}
+
+.contenedor-verde {
+    @apply bg-emerald-50/50 py-8 sm:py-12 px-4 sm:px-6 rounded-3xl max-w-7xl mx-auto my-2 border border-emerald-100/50 flex flex-col items-center gap-6 sm:gap-8 w-full;
+}
+
+.contenedor-tarjetas {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-6xl;
+}
+
+.btn-primario {
+    @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 sm:px-8 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-sm hover:shadow-md cursor-pointer text-center;
+}

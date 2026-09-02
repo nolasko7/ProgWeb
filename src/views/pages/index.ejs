@@ -54,7 +54,7 @@
                         <p class="text-black text-xl sm:text-2xl">Te pueden interesar...</p>
                     </div>
                     <div class="contenedor-tarjetas">
-                        <% productosTec.forEach(producto => { %>
+                        <% products.forEach(producto => { %>
                             <%- include('../partials/productCard', { producto: producto }) %>
                         <% }) %>
                     </div>
@@ -72,7 +72,7 @@
                     <p class="text-black text-xl sm:text-2xl">Productos mas pedidos</p>
                 </div>
                 <div class="contenedor-tarjetas">
-                    <% productosTec.forEach(producto => { %>
+                    <% products.forEach(producto => { %>
                         <%- include('../partials/productCard', { producto: producto }) %>
                     <% }) %>
                 </div>

@@ -39,6 +39,10 @@ app.get("/checkout", (req, res) => {
 
 app.use("/category", routerCategory);
 
+app.use("/checkout", (req,res) => {
+    res.render("pages/checkout")
+});
+
 //LISTEN
 app.listen(PORT,
     () => console.log("Server is Ready! 🫡")

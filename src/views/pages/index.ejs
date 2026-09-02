@@ -72,7 +72,7 @@
                     <p class="text-black text-xl sm:text-2xl">Productos mas pedidos</p>
                 </div>
                 <div class="contenedor-tarjetas">
-                    <% products.forEach(producto => { %>
+                    <% productosMasPedidos.forEach(producto => { %>
                         <%- include('../partials/productCard', { producto: producto }) %>
                     <% }) %>
                 </div>

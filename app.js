@@ -16,7 +16,8 @@ app.set("views", path.join(__dirname, "src/views"));
 
 
 app.get("/", (req, res) => {
-    res.render("pages/index", { products: products.slice(0, 6), categories });
+    const productosSugeridos = [...products].sort(()=> Math.random()- 0.5).slice(0,5);
+    res.render("pages/index", { products: products.slice(0, 6), categories, productosSugeridos });
 });
 
 app.use("/products", routerProduct);

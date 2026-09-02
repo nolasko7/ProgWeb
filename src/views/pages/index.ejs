@@ -54,7 +54,7 @@
                         <p class="text-black text-xl sm:text-2xl">Te pueden interesar...</p>
                     </div>
                     <div class="contenedor-tarjetas">
-                        <% products.forEach(producto => { %>
+                        <% productosSugeridos.forEach(producto => { %>
                             <%- include('../partials/productCard', { producto: producto }) %>
                         <% }) %>
                     </div>

@@ -173,7 +173,138 @@ const products = [
         price: 24500,
         image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600&auto=format&fit=crop&q=80",
         description: "Doble pared con aislamiento al vacío para mantener bebidas frías o calientes durante más de 24 horas. Pico cebador de precisión."
+    },
+    {
+        id: 21,
+        category: "Bebidas",
+        name: "Cerveza Artesanal IPA Pack x6",
+        price: 11800,
+        image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=600&auto=format&fit=crop&q=80",
+        description: "Pack de seis cervezas IPA artesanales con notas cítricas, amargor equilibrado y final refrescante.",
+        puntos: 94
+    },
+    {
+        id: 22,
+        category: "Electronica",
+        name: "Monitor Gamer 27 pulgadas 165Hz",
+        price: 215000,
+        image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&auto=format&fit=crop&q=80",
+        description: "Monitor QHD de 27 pulgadas con tasa de refresco de 165Hz, respuesta rápida y colores intensos.",
+        puntos: 98
+    },
+    {
+        id: 23,
+        category: "Alimentos",
+        name: "Caja de Snacks Saludables",
+        price: 9600,
+        image: "https://images.unsplash.com/photo-1621939514649-280e2aa9f6f0?w=600&auto=format&fit=crop&q=80",
+        description: "Selección de frutos secos, barras de cereal y chips horneados para disfrutar durante el día.",
+        puntos: 87
+    },
+    {
+        id: 24,
+        category: "Automotor",
+        name: "Soporte Magnético para Celular",
+        price: 7800,
+        image: "https://images.unsplash.com/photo-1609621838510-5ad474b7d25d?w=600&auto=format&fit=crop&q=80",
+        description: "Soporte compacto para tablero con imán de alta resistencia y rotación de 360 grados.",
+        puntos: 91
+    },
+    {
+        id: 25,
+        category: "Hogar",
+        name: "Set de Organizadores para Cocina",
+        price: 16400,
+        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600&auto=format&fit=crop&q=80",
+        description: "Set de recipientes herméticos apilables para mantener ordenados alimentos y espacios de cocina.",
+        puntos: 84
+    },
+    {
+        id: 26,
+        category: "Indumentaria",
+        name: "Campera Impermeable Liviana",
+        price: 37900,
+        image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=600&auto=format&fit=crop&q=80",
+        description: "Campera liviana con capucha ajustable, bolsillos con cierre y tela resistente al agua.",
+        puntos: 96
+    },
+    {
+        id: 27,
+        category: "Juegos",
+        name: "Silla Gamer Ergonómica",
+        price: 179000,
+        image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&auto=format&fit=crop&q=80",
+        description: "Silla con respaldo reclinable, apoyabrazos regulables y soporte lumbar para largas sesiones.",
+        puntos: 99
+    },
+    {
+        id: 28,
+        category: "Otros",
+        name: "Botella Térmica Inteligente 750ml",
+        price: 28900,
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&auto=format&fit=crop&q=80",
+        description: "Botella de acero inoxidable con pantalla de temperatura en la tapa y aislamiento térmico.",
+        puntos: 89
+    },
+    {
+        id: 29,
+        category: "Electronica",
+        name: "Teclado Mecánico RGB",
+        price: 62500,
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
+        description: "Teclado mecánico compacto con iluminación RGB, teclas resistentes y conexión USB-C.",
+        puntos: 97
+    },
+    {
+        id: 30,
+        category: "Hogar",
+        name: "Aspiradora Robot Inteligente",
+        price: 145000,
+        image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&auto=format&fit=crop&q=80",
+        description: "Aspiradora robot con mapeo inteligente, control desde el celular y regreso automático a la base.",
+        puntos: 93
     }
 ];
 
-module.exports = products;
+
+function productosRandom(id){
+    const productosDisponibles = id === undefined
+        ? products
+        : products.filter(product => product.id !== parseInt(id));
+
+    return [...productosDisponibles]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5);
+}
+
+function productosMasLlevados(){
+    return [...products].sort((a, b) => b.puntos - a.puntos).slice(0, 5)
+}
+
+
+function getTodosProductos(){
+    return products
+}
+
+function getProductoPorId(id){
+    return products.find(product => product.id === parseInt(id));
+}
+
+function getCategoriaProductos(categoria){
+
+    if(categoria !== "string" || categoria.trim() ===""){
+        throw new Error("La categoria tiene que ser un texto no vacio ")
+    }
+
+
+    const prodcutosFiltrados = products.filter(product => {
+        return product.category.toLocaleLowerCase() === categoria.toLocaleLowerCase() // funcion que hacea que las categorias no sean sencibles con las mayusculas 
+
+    })
+
+    return prodcutosFiltrados
+
+}
+
+
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId };

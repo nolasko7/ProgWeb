@@ -2,7 +2,7 @@ const express = require('express')
 
 const routerCategory = require('./src/routes/routesCategory');
 const routerProduct = require('./src/routes/routesProduct');
-const products = require('./public/data/products');
+const products = require('./src/models/products');
 const categories = require('./public/data/categories');
 const app = express();
 
@@ -16,8 +16,11 @@ app.set("views", path.join(__dirname, "src/views"));
 
 
 app.get("/", (req, res) => {
-    const productosSugeridos = [...products].sort(()=> Math.random()- 0.5).slice(0,5);
-    res.render("pages/index", { products: products.slice(0, 6), categories, productosSugeridos });
+
+    const productos = products.productosRandom();
+    const productosMasLlevados = products.productosMasLlevados();
+    
+     res.render("pages/index", { categories, productos, productosMasLlevados });
 });
 
 app.use("/products", routerProduct);

@@ -1,10 +1,16 @@
+
+
+
 <div class="flex md:block gap-3 border border-gray-300 rounded-xl p-3 bg-white shadow-xl">
-    <img src="https://placehold.co/300x300" alt="Coca Cola Lata 220mL Pack Original x8"
+    
+    <img src="<%=producto.image%>" alt="<%=producto.name%>"
+    
     class="w-20 h-20 flex-shrink-0 rounded-lg object-cover md:w-full md:h-68 md:rounded-none">
+    
     <div class="flex flex-col md:flex-row md:justify-between gap-1 md:gap-2 md:mt-2">
-        <p class="text-sm font-semibold text-gray-900 ">Coca Cola Lata 220mL Pack Original x8</p>
+        <p class="text-sm font-semibold text-gray-900 "><%=producto.name%></p>
         <p class="text-sm leading-tight md:border-l md:border-gray-200 md:pl-2 md:w-55">
-        <span class="font-semibold text-gray-900">760</span>
+        <span class="font-semibold text-gray-900"><%=producto.price%></span>
         <span class="block text-[7px] text-gray-500 uppercase">Puntos</span>
         </p>
     </div>

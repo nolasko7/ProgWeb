@@ -8,6 +8,7 @@ const routerCategory = require('./src/routes/routesCategory');
 const routerProduct = require('./src/routes/routesProduct');
 const products = require('./src/models/products');
 const categories = require('./public/data/categories');
+const routerCart = require('./src/routes/routesCart');
 const session = require('express-session');
 const app = express();
 
@@ -66,9 +67,7 @@ app.get("/", (req, res) => {
 
 app.use("/product", routerProduct);
 
-app.get("/cart", (req, res) => {
-    res.render("pages/cart", { carrito: req.session.carrito, categories });
-});
+app.use("/cart", routerCart);
 
 
 app.get("/login", (req, res) => {

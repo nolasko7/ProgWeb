@@ -2,6 +2,24 @@
 
 @source "../../views";
 
+
+/* ============================================================
+   Animación custom para el cartelito de "producto agregado".
+   Esto es CSS normal, convive sin problema con Tailwind v4.
+============================================================ */
+@keyframes desvanecerCartel {
+  0%   { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.cartel-agregado {
+  animation: desvanecerCartel 4s forwards;
+}
+
+
+
+
 .header-class-texto {
     @apply text-2xl font-sans text-[#44C79A];
 }
@@ -37,3 +55,4 @@
 .btn-primario {
     @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 sm:px-8 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-sm hover:shadow-md cursor-pointer text-center;
 }
+

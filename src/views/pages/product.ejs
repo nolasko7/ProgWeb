@@ -11,6 +11,13 @@
 <body class="bg-gray-200 min-h-screen">
     <%- include('../partials/header') %>
         <div class="max-w-6xl mx-auto py-8">
+
+            <% if (flash) { %>
+                <div class="cartel-agregado bg-emerald-100 border border-emerald-400 text-emerald-800 px-4 py-3 rounded-xl mb-6 inline-flex items-center gap-2 font-semibold">
+                    <%= flash %>
+                </div>
+            <% } %>
+
             <nav aria-label="breadcrumb" class="text-sm text-gray-700 mb-4 flex items-center gap-1 font-medium">
                 <div class="my-4">
 
@@ -63,9 +70,15 @@
                             <%= "Puntos" %>
                         </span>
                     </p>
-                    <button type="button"
-                        class="w-full bg-gray-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-gray-700 cursor-pointer order-4 md:order-3">Agregar
-                        al carrito </button>
+
+                    <form action="/cart/add" method="POST" class="order-4 md:order-3">
+                        <input type="hidden" name="productId" value="<%= productoEncontrado.id %>">
+                        <button type="submit"
+                            class="w-full bg-gray-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-gray-700 cursor-pointer">
+                            Agregar al carrito
+                        </button>
+                    </form>
+
                     <p class="text-gray-800 mb-6 whitespace-pre-line order-3 md:order-4">
                         <%= productoEncontrado.description %>
                     </p>

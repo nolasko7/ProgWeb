@@ -16,7 +16,8 @@ function obtenerProducto(req , res){
 
 
     if (productoEncontrado) {
-        res.render("pages/product", {productoEncontrado, categories , productosRandom, flash});
+        const productosRelacionados = products.productosRandomDelamismaCategoria(productoEncontrado.category, id);
+        res.render("pages/product", {productoEncontrado, categories , productosRandom, productosRelacionados, flash});
     } else {
         res.status(404).render("pages/error", { code: 404, message: "Producto no encontrado", categories });
     }

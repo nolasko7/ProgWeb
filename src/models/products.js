@@ -263,6 +263,15 @@ const products = [
         image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&auto=format&fit=crop&q=80",
         description: "Aspiradora robot con mapeo inteligente, control desde el celular y regreso automático a la base.",
         puntos: 93
+    },
+    {
+        id: 31,
+        category: "prueba",
+        name: "Producto de Prueba",
+        price: 1000,
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
+        description: "Producto de prueba para verificar el funcionamiento del sistema.",
+        puntos: 50
     }
 ];
 
@@ -275,6 +284,18 @@ function productosRandom(id){
     return [...productosDisponibles]
         .sort(() => Math.random() - 0.5)
         .slice(0, 5);
+}
+
+function productosRandomDelamismaCategoria(categoria, id){
+    if(!categoria){
+        return [];
+    }
+    const productosDisponibles = products.filter(product => {
+        return product.category.toLowerCase() === categoria.toLowerCase() && product.id !== parseInt(id);
+    });
+    return [...productosDisponibles]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4);
 }
 
 function productosMasLlevados(){
@@ -307,4 +328,6 @@ function getCategoriaProductos(categoria){
 }
 
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId };
+
+
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria };

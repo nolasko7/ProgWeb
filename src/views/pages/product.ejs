@@ -84,6 +84,19 @@
                     </p>
                 </div>
             </div>
+            <h2 class="text-2xl mt-8">Productos relacionados</h2>
+            <% if (productosRelacionados.length > 0) { %>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4">
+                    <% productosRelacionados.forEach(producto => { %>
+                        <%- include('../partials/CartasMuestraProductos', { producto: producto }) %>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <div class="flex flex-col items-center justify-center gap-1 py-10 mt-4 bg-white border border-gray-300 rounded-xl shadow-xl">
+                  <p class="text-gray-500 text-sm">Lo sentimos...</p>
+                  <p class="text-gray-700 font-semibold">No hay productos relacionados disponibles.</p>
+                </div>
+            <% } %>
             <h2 class="text-2xl mt-8">Tambien te puede interesar</h2>
 
 

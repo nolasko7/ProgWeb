@@ -36,12 +36,16 @@
 
 
         </div>
-
-        <%- include(`../partials/CartasMuestraProductoCarrito.ejs`)%>
-        <%- include(`../partials/CartasMuestraProductoCarrito.ejs`)%>
-        <%- include(`../partials/CartasMuestraProductoCarrito.ejs`)%>
-        <%- include(`../partials/CartasMuestraProductoCarrito.ejs`)%>
-        <%- include(`../partials/CartasMuestraProductoCarrito.ejs`)%>
+    
+        <% if (elementosCarrito && elementosCarrito.length > 0) { %>
+            <% elementosCarrito.forEach(elemento => { %>
+                <%- include('../partials/CartasMuestraProductoCarrito', { elementosCarrito: elemento }) %>
+            <% }) %>
+        <% } else { %>
+            <div class="my-8 rounded-2xl border border-dashed border-gray-300 bg-white p-6 text-center text-gray-600">
+                Tu carrito está vacío.
+            </div>
+        <% } %>
         
 
 

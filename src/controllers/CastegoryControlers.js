@@ -8,4 +8,11 @@ function categories (req , res ){
     res.render('../views/pages/category', { categoryName });
 }
 
+
+
+
+
+
+
+
 module.exports = {categories}

@@ -20,8 +20,23 @@ function addToCart(req, res) {
     }
 
     // req.get('Referer') = la URL de la página desde donde vino el <form>
-  
+
     res.redirect(req.get('Referer'));
 }
 
-module.exports = { addToCart };
+function cargarCarrito(req, res) {
+    const carrito = req.session.carrito || [];
+
+    const elementosCarrito = carrito.map(objeto=>({
+
+        ...objeto,
+
+        objeto : getProductoPorId(objeto.productId)
+
+
+    }));
+
+    res.render('pages/cart', { elementosCarrito });
+}
+
+module.exports = { addToCart, cargarCarrito };

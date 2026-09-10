@@ -61,8 +61,8 @@ app.get("/", (req, res) => {
 
     const productos = products.productosRandom();
     const productosMasLlevados = products.productosMasLlevados();
-    
-     res.render("pages/index", { categories, productos, productosMasLlevados });
+
+    res.render("pages/index", { categories, productos, productosMasLlevados });
 });
 
 app.use("/product", routerProduct);

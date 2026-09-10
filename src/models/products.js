@@ -6,7 +6,8 @@ const products = [
         name: "Whisky Jack Daniels Honey 750ml",
         price: 19900,
         image: "https://cdn.awsli.com.br/2500x2500/2148/2148460/produto/137280811/42ceca746f.jpg",
-        description: "Un verdaderamente fabuloso licor de whisky Jack Daniel's. Hecho con una mezcla de ricas especias y suave miel tersa. Delicioso sobre hielo o café.\nAroma de caramelo, roble carbonizado y vainilla.\nBoca cremosa con notas de roble tostado y miel."
+        description: "Un verdaderamente fabuloso licor de whisky Jack Daniel's. Hecho con una mezcla de ricas especias y suave miel tersa. Delicioso sobre hielo o café.\nAroma de caramelo, roble carbonizado y vainilla.\nBoca cremosa con notas de roble tostado y miel.",
+        masPedido: true
     },
     {
         id: 2,
@@ -14,7 +15,8 @@ const products = [
         name: "Vino Malbec Reserva 750ml",
         price: 8500,
         image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&auto=format&fit=crop&q=80",
-        description: "Vino tinto Malbec de gran cuerpo y estructura. Notas a frutos rojos maduros, ciruela y un toque sutil de vainilla aportado por su paso por barrica de roble."
+        description: "Vino tinto Malbec de gran cuerpo y estructura. Notas a frutos rojos maduros, ciruela y un toque sutil de vainilla aportado por su paso por barrica de roble.",
+        masPedido: true
     },
     {
         id: 3,
@@ -32,7 +34,8 @@ const products = [
         name: "Notebook Lenovo ThinkPad 14\"",
         price: 249999,
         image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80",
-        description: "Potente notebook orientada a productividad y rendimiento. Cuenta con procesador de última generación, 16GB de memoria RAM y disco SSD ultra rápido de 512GB."
+        description: "Potente notebook orientada a productividad y rendimiento. Cuenta con procesador de última generación, 16GB de memoria RAM y disco SSD ultra rápido de 512GB.",
+        masPedido: true
     },
     {
         id: 5,
@@ -40,7 +43,8 @@ const products = [
         name: "Smart TV Samsung 55\" 4K UHD",
         price: 189999,
         image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80",
-        description: "Disfruta de colores vibrantes y detalles asombrosos con resolución 4K. Compatible con las principales plataformas de streaming y control por voz."
+        description: "Disfruta de colores vibrantes y detalles asombrosos con resolución 4K. Compatible con las principales plataformas de streaming y control por voz.",
+        masPedido: true
     },
     {
         id: 6,
@@ -56,7 +60,8 @@ const products = [
         name: "Auriculares Inalámbricos Bluetooth",
         price: 34500,
         image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
-        description: "Cancelación activa de ruido, sonido de alta fidelidad y hasta 30 horas de batería con estuche de carga rápida. Almohadillas ergonómicas ultra cómodas."
+        description: "Cancelación activa de ruido, sonido de alta fidelidad y hasta 30 horas de batería con estuche de carga rápida. Almohadillas ergonómicas ultra cómodas.",
+        masPedido: true
     },
 
     // --- Alimentos ---
@@ -74,7 +79,8 @@ const products = [
         name: "Chocolate Amargo 70% Cacao 100g",
         price: 3200,
         image: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&auto=format&fit=crop&q=80",
-        description: "Tableta de chocolate amargo gourmet elaborado con granos de cacao fino de aroma. Textura suave y sabor intenso."
+        description: "Tableta de chocolate amargo gourmet elaborado con granos de cacao fino de aroma. Textura suave y sabor intenso.",
+        masPedido: true
     },
     {
         id: 10,
@@ -92,7 +98,8 @@ const products = [
         name: "Kit de Limpieza y Cuidado Automotriz",
         price: 15900,
         image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&auto=format&fit=crop&q=80",
-        description: "Incluye shampoo siliconado, cera líquida protectora, limpiador de interiores, revividor de neumáticos y paño de microfibra de alta densidad."
+        description: "Incluye shampoo siliconado, cera líquida protectora, limpiador de interiores, revividor de neumáticos y paño de microfibra de alta densidad.",
+        masPedido: true
     },
     {
         id: 12,
@@ -100,7 +107,8 @@ const products = [
         name: "Compresor de Aire Portátil 12V",
         price: 21500,
         image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&auto=format&fit=crop&q=80",
-        description: "Inflador digital portátil con conexión para encendedor de auto. Pantalla LCD con medición de presión en PSI y apagado automático."
+        description: "Inflador digital portátil con conexión para encendedor de auto. Pantalla LCD con medición de presión en PSI y apagado automático.",
+        masPedido: true
     },
 
     // --- Hogar ---
@@ -118,7 +126,8 @@ const products = [
         name: "Lámpara de Escritorio LED Inteligente",
         price: 12400,
         image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&auto=format&fit=crop&q=80",
-        description: "Regulación de temperatura de color y brillo táctil. Brazo articulado flexible y puerto de carga USB integrado en la base."
+        description: "Regulación de temperatura de color y brillo táctil. Brazo articulado flexible y puerto de carga USB integrado en la base.",
+        masPedido: true
     },
 
     // --- Indumentaria ---
@@ -146,7 +155,8 @@ const products = [
         name: "Consola de Videojuegos Next-Gen",
         price: 380000,
         image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&auto=format&fit=crop&q=80",
-        description: "Experimenta tiempos de carga ultrarrápidos con su disco SSD de alta velocidad, gráficos en 4K hasta 120 FPS y audio 3D inmersivo."
+        description: "Experimenta tiempos de carga ultrarrápidos con su disco SSD de alta velocidad, gráficos en 4K hasta 120 FPS y audio 3D inmersivo.",
+        masPedido: true
     },
     {
         id: 18,

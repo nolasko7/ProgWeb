@@ -10,15 +10,21 @@
 
         <div class="order-3 flex pr-10 items-center shrink-0 min-w-0">
 
-            <button class="mx-2 bg-gray-500 text-white rounded-2xl px-3 py-1.5 cursor-pointer" type="button">Quitar</button>
+            <form action="/cart/remove/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                <button class="mx-2 bg-gray-500 text-white rounded-2xl px-3 py-1.5 cursor-pointer" type="submit">Quitar</button>
+            </form>
 
             <div class="mx-3 flex items-center border border-black rounded-2xl py-1">
-                <button class="cursor-pointer mx-2" type="button">-</button>
-                <p class="mx-2 "> <%=elementosCarrito.quantity %> </p>
-                <button class="cursor-pointer mx-2" type="button">+</button>
+                <form action="/cart/decrement/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                    <button class="cursor-pointer mx-2" type="submit">-</button>
+                </form>
+                <p class="mx-2 "><%= elementosCarrito.cantidad %></p>
+                <form action="/cart/increment/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                    <button class="cursor-pointer mx-2" type="submit">+</button>
+                </form>
             </div>
 
-            <p class="text-3xl shrink-0">$100</p>
+            <p class="text-3xl shrink-0">$ <%= elementosCarrito.total.toLocaleString() %> </p>
 
         </div>
 

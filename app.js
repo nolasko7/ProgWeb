@@ -72,7 +72,6 @@ app.use("/product", routerProduct);
 
 app.use("/cart", routerCart);
 
-
 app.get("/login", (req, res) => {
     res.render("pages/login");
 });

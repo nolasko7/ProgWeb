@@ -7,7 +7,8 @@ const products = [
         price: 19900,
         image: "https://cdn.awsli.com.br/2500x2500/2148/2148460/produto/137280811/42ceca746f.jpg",
         description: "Un verdaderamente fabuloso licor de whisky Jack Daniel's. Hecho con una mezcla de ricas especias y suave miel tersa. Delicioso sobre hielo o café.\nAroma de caramelo, roble carbonizado y vainilla.\nBoca cremosa con notas de roble tostado y miel.",
-        masPedido: true
+        masPedido: true,
+        stock: 0
     },
     {
         id: 2,
@@ -16,7 +17,8 @@ const products = [
         price: 8500,
         image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&auto=format&fit=crop&q=80",
         description: "Vino tinto Malbec de gran cuerpo y estructura. Notas a frutos rojos maduros, ciruela y un toque sutil de vainilla aportado por su paso por barrica de roble.",
-        masPedido: true
+        masPedido: true,
+        stock: 0
     },
     {
         id: 3,
@@ -24,7 +26,8 @@ const products = [
         name: "Gin Premium Artesanal 700ml",
         price: 14200,
         image: "https://images.unsplash.com/photo-1527061011665-3652c757a4d4?w=600&auto=format&fit=crop&q=80",
-        description: "Destilado con una cuidada selección de 10 botánicos naturales. Ideal para preparar el mejor Gin Tonic con toques cítricos y refrescantes."
+        description: "Destilado con una cuidada selección de 10 botánicos naturales. Ideal para preparar el mejor Gin Tonic con toques cítricos y refrescantes.",
+        stock: 15
     },
 
     // --- Electronica ---
@@ -35,7 +38,8 @@ const products = [
         price: 249999,
         image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80",
         description: "Potente notebook orientada a productividad y rendimiento. Cuenta con procesador de última generación, 16GB de memoria RAM y disco SSD ultra rápido de 512GB.",
-        masPedido: true
+        masPedido: true,
+        stock: 4
     },
     {
         id: 5,
@@ -44,7 +48,8 @@ const products = [
         price: 189999,
         image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80",
         description: "Disfruta de colores vibrantes y detalles asombrosos con resolución 4K. Compatible con las principales plataformas de streaming y control por voz.",
-        masPedido: true
+        masPedido: true,
+        stock: 6
     },
     {
         id: 6,
@@ -52,7 +57,8 @@ const products = [
         name: "Smartphone Xiaomi Redmi 128GB",
         price: 99999,
         image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
-        description: "Excelente rendimiento y autonomía gracias a su batería de 5000mAh. Cámara triple con sensor principal de alta resolución y pantalla fluida de 90Hz."
+        description: "Excelente rendimiento y autonomía gracias a su batería de 5000mAh. Cámara triple con sensor principal de alta resolución y pantalla fluida de 90Hz.",
+        stock: 10
     },
     {
         id: 7,
@@ -61,7 +67,8 @@ const products = [
         price: 34500,
         image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
         description: "Cancelación activa de ruido, sonido de alta fidelidad y hasta 30 horas de batería con estuche de carga rápida. Almohadillas ergonómicas ultra cómodas.",
-        masPedido: true
+        masPedido: true,
+        stock: 17
     },
 
     // --- Alimentos ---
@@ -71,7 +78,8 @@ const products = [
         name: "Café de Especialidad en Grano 500g",
         price: 6800,
         image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&auto=format&fit=crop&q=80",
-        description: "Granos seleccionados 100% arábica de origen colombiano. Tueste medio con notas a chocolate, caramelo y sutil acidez cítrica."
+        description: "Granos seleccionados 100% arábica de origen colombiano. Tueste medio con notas a chocolate, caramelo y sutil acidez cítrica.",
+        stock: 14
     },
     {
         id: 9,
@@ -80,7 +88,8 @@ const products = [
         price: 3200,
         image: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&auto=format&fit=crop&q=80",
         description: "Tableta de chocolate amargo gourmet elaborado con granos de cacao fino de aroma. Textura suave y sabor intenso.",
-        masPedido: true
+        masPedido: true,
+        stock: 9
     },
     {
         id: 10,
@@ -88,7 +97,8 @@ const products = [
         name: "Aceite de Oliva Extra Virgen 500ml",
         price: 5400,
         image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&auto=format&fit=crop&q=80",
-        description: "Primera prensada en frío. Sabor frutado equilibrado con ligero picor final, ideal para ensaladas y preparaciones mediterráneas."
+        description: "Primera prensada en frío. Sabor frutado equilibrado con ligero picor final, ideal para ensaladas y preparaciones mediterráneas.",
+        stock: 11
     },
 
     // --- Automotor ---
@@ -99,7 +109,8 @@ const products = [
         price: 15900,
         image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&auto=format&fit=crop&q=80",
         description: "Incluye shampoo siliconado, cera líquida protectora, limpiador de interiores, revividor de neumáticos y paño de microfibra de alta densidad.",
-        masPedido: true
+        masPedido: true,
+        stock: 7
     },
     {
         id: 12,
@@ -108,7 +119,8 @@ const products = [
         price: 21500,
         image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&auto=format&fit=crop&q=80",
         description: "Inflador digital portátil con conexión para encendedor de auto. Pantalla LCD con medición de presión en PSI y apagado automático.",
-        masPedido: true
+        masPedido: true,
+        stock: 13
     },
 
     // --- Hogar ---
@@ -118,7 +130,8 @@ const products = [
         name: "Cafetera Espresso Automática",
         price: 89000,
         image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=600&auto=format&fit=crop&q=80",
-        description: "Bomba de 15 bares de presión para un café con crema perfecta. Vaporizador integrado para espumar leche y preparar cappuccinos irresistibles."
+        description: "Bomba de 15 bares de presión para un café con crema perfecta. Vaporizador integrado para espumar leche y preparar cappuccinos irresistibles.",
+        stock: 5
     },
     {
         id: 14,
@@ -127,7 +140,8 @@ const products = [
         price: 12400,
         image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&auto=format&fit=crop&q=80",
         description: "Regulación de temperatura de color y brillo táctil. Brazo articulado flexible y puerto de carga USB integrado en la base.",
-        masPedido: true
+        masPedido: true,
+        stock: 18
     },
 
     // --- Indumentaria ---
@@ -137,7 +151,8 @@ const products = [
         name: "Zapatillas Deportivas Urbanas",
         price: 45900,
         image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80",
-        description: "Diseño ergonómico y liviano para máximo confort diario. Suela de amortiguación reforzada y tela respirable."
+        description: "Diseño ergonómico y liviano para máximo confort diario. Suela de amortiguación reforzada y tela respirable.",
+        stock: 16
     },
     {
         id: 16,
@@ -145,7 +160,8 @@ const products = [
         name: "Buzo Hoodie Algodón Oversize",
         price: 22000,
         image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop&q=80",
-        description: "Confeccionado en 100% algodón frizado de máxima suavidad y abrigo. Capucha amplia con cordones ajustables y bolsillo canguro."
+        description: "Confeccionado en 100% algodón frizado de máxima suavidad y abrigo. Capucha amplia con cordones ajustables y bolsillo canguro.",
+        stock: 20
     },
 
     // --- Juegos ---
@@ -156,7 +172,8 @@ const products = [
         price: 380000,
         image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&auto=format&fit=crop&q=80",
         description: "Experimenta tiempos de carga ultrarrápidos con su disco SSD de alta velocidad, gráficos en 4K hasta 120 FPS y audio 3D inmersivo.",
-        masPedido: true
+        masPedido: true,
+        stock: 3
     },
     {
         id: 18,
@@ -164,7 +181,8 @@ const products = [
         name: "Joystick Inalámbrico Ergonómico",
         price: 32000,
         image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=600&auto=format&fit=crop&q=80",
-        description: "Gatillos adaptativos y retroalimentación háptica precisa. Compatible con PC, consolas y dispositivos móviles vía Bluetooth."
+        description: "Gatillos adaptativos y retroalimentación háptica precisa. Compatible con PC, consolas y dispositivos móviles vía Bluetooth.",
+        stock: 19
     },
 
     // --- Otros ---
@@ -174,7 +192,8 @@ const products = [
         name: "Mochila Antirrobo Impermeable",
         price: 18700,
         image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&auto=format&fit=crop&q=80",
-        description: "Compartimento acolchado para notebook de hasta 15.6 pulgadas, cierres ocultos de seguridad y puerto exterior USB para batería portátil."
+        description: "Compartimento acolchado para notebook de hasta 15.6 pulgadas, cierres ocultos de seguridad y puerto exterior USB para batería portátil.",
+        stock: 12
     },
     {
         id: 20,
@@ -182,7 +201,8 @@ const products = [
         name: "Termo de Acero Inoxidable 1L",
         price: 24500,
         image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600&auto=format&fit=crop&q=80",
-        description: "Doble pared con aislamiento al vacío para mantener bebidas frías o calientes durante más de 24 horas. Pico cebador de precisión."
+        description: "Doble pared con aislamiento al vacío para mantener bebidas frías o calientes durante más de 24 horas. Pico cebador de precisión.",
+        stock: 10
     },
     {
         id: 21,
@@ -191,7 +211,8 @@ const products = [
         price: 11800,
         image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=600&auto=format&fit=crop&q=80",
         description: "Pack de seis cervezas IPA artesanales con notas cítricas, amargor equilibrado y final refrescante.",
-        puntos: 94
+        puntos: 94,
+        stock: 21
     },
     {
         id: 22,
@@ -200,7 +221,8 @@ const products = [
         price: 215000,
         image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&auto=format&fit=crop&q=80",
         description: "Monitor QHD de 27 pulgadas con tasa de refresco de 165Hz, respuesta rápida y colores intensos.",
-        puntos: 98
+        puntos: 98,
+        stock: 2
     },
     {
         id: 23,
@@ -209,7 +231,8 @@ const products = [
         price: 9600,
         image: "https://images.unsplash.com/photo-1621939514649-280e2aa9f6f0?w=600&auto=format&fit=crop&q=80",
         description: "Selección de frutos secos, barras de cereal y chips horneados para disfrutar durante el día.",
-        puntos: 87
+        puntos: 87,
+        stock: 15
     },
     {
         id: 24,
@@ -218,7 +241,8 @@ const products = [
         price: 7800,
         image: "https://images.unsplash.com/photo-1609621838510-5ad474b7d25d?w=600&auto=format&fit=crop&q=80",
         description: "Soporte compacto para tablero con imán de alta resistencia y rotación de 360 grados.",
-        puntos: 91
+        puntos: 91,
+        stock: 9
     },
     {
         id: 25,
@@ -227,7 +251,8 @@ const products = [
         price: 16400,
         image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600&auto=format&fit=crop&q=80",
         description: "Set de recipientes herméticos apilables para mantener ordenados alimentos y espacios de cocina.",
-        puntos: 84
+        puntos: 84,
+        stock: 14
     },
     {
         id: 26,
@@ -236,7 +261,8 @@ const products = [
         price: 37900,
         image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=600&auto=format&fit=crop&q=80",
         description: "Campera liviana con capucha ajustable, bolsillos con cierre y tela resistente al agua.",
-        puntos: 96
+        puntos: 96,
+        stock: 7
     },
     {
         id: 27,
@@ -245,7 +271,8 @@ const products = [
         price: 179000,
         image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=600&auto=format&fit=crop&q=80",
         description: "Silla con respaldo reclinable, apoyabrazos regulables y soporte lumbar para largas sesiones.",
-        puntos: 99
+        puntos: 99,
+        stock: 6
     },
     {
         id: 28,
@@ -254,7 +281,8 @@ const products = [
         price: 28900,
         image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&auto=format&fit=crop&q=80",
         description: "Botella de acero inoxidable con pantalla de temperatura en la tapa y aislamiento térmico.",
-        puntos: 89
+        puntos: 89,
+        stock: 18
     },
     {
         id: 29,
@@ -263,7 +291,8 @@ const products = [
         price: 62500,
         image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
         description: "Teclado mecánico compacto con iluminación RGB, teclas resistentes y conexión USB-C.",
-        puntos: 97
+        puntos: 97,
+        stock: 8
     },
     {
         id: 30,
@@ -272,7 +301,8 @@ const products = [
         price: 145000,
         image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&auto=format&fit=crop&q=80",
         description: "Aspiradora robot con mapeo inteligente, control desde el celular y regreso automático a la base.",
-        puntos: 93
+        puntos: 93,
+        stock: 4
     },
     {
         id: 31,
@@ -281,9 +311,11 @@ const products = [
         price: 1000,
         image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
         description: "Producto de prueba para verificar el funcionamiento del sistema.",
-        puntos: 50
+        puntos: 50,
+        stock: 11
     }
 ];
+
 
 
 function productosRandom(id){
@@ -337,7 +369,32 @@ function getCategoriaProductos(categoria){
 
 }
 
+function stockdown (id){
+
+    products.forEach(p =>{
+
+        if( p.id === id )
+        {
+        p.stock = p.stock - 1 ;
+            return;
+        }
+    })
+}
+
+function stockUp (id){
+
+    products.forEach(p =>{
+
+        if( p.id === id )
+        {
+        p.stock = p.stock + 1 ;
+            return;
+        }
+    })
+
+}
 
 
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria };
+
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockdown , stockUp};

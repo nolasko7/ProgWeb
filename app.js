@@ -44,6 +44,7 @@ app.use((req , res , next) => {
 
 
 const path = require("path");
+const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
 
 const PORT = process.env.PORT || 3000;
 
@@ -60,9 +61,11 @@ app.set("views", path.join(__dirname, "src/views"));
 app.get("/", (req, res) => {
 
     const productos = products.productosRandom();
+    const flash = req.session.flash;
+    req.session.flash = null;
     const productosMasLlevados = products.productosMasLlevados();
 
-    res.render("pages/index", { categories, productos, productosMasLlevados });
+    res.render("pages/index", { categories, productos, productosMasLlevados, flash});
 });
 
 app.use("/product", routerProduct);

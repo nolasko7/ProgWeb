@@ -5,13 +5,12 @@
     
     <a href="/product/<%= producto.id%>"><img src="<%=producto.image%>" alt="<%=producto.name%>"
         class="w-20 h-20 flex-shrink-0 rounded-lg object-cover md:w-full md:h-68 md:rounded-none"> </a>
-    
-
     <div class="flex flex-col md:flex-row md:justify-between gap-1 md:gap-2 md:mt-2">
         <p class="text-sm font-semibold text-gray-900 "><%=producto.name%></p>
         <p class="text-sm leading-tight md:border-l md:border-gray-200 md:pl-2 md:w-55">
         <span class="font-semibold text-gray-900"><%=producto.price%></span>
-        <span class="block text-[7px] text-gray-500 uppercase">Puntos</span>
+        <span class="block text-[10px] text-gray-500 uppercase">Puntos</span>
+        <span class="block text-[10px] text-black uppercase font-bold py-3 ">Stock: <%= producto.stock %></span>
         </p>
     </div>
 </div>

@@ -70,7 +70,12 @@
                             <%= "Puntos" %>
                         </span>
                     </p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-black mb-4 order-2">
+                        Stock disponible: <%= productoEncontrado.stock %>
+                    </p>
 
+
+                    <% if (productoEncontrado.stock > 0 ) {%>
                     <form action="/cart/add" method="POST" class="order-4 md:order-3">
                         <input type="hidden" name="productId" value="<%= productoEncontrado.id %>">
                         <button type="submit"
@@ -78,6 +83,15 @@
                             Agregar al carrito
                         </button>
                     </form>
+                    <% } else { %>
+
+                        <button type="submit"
+                            class="w-full bg-gray-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-gray-700 cursor-pointer">
+                            SIN STOCK
+                        </button>
+
+                    <% } %>
+                    
 
                     <p class="text-gray-800 mb-6 whitespace-pre-line order-3 md:order-4">
                         <%= productoEncontrado.description %>

@@ -1,11 +1,13 @@
+const { contadorCarrito } = require('../models/carrtio');
 
 
 
+function categories(req, res) {
 
-function categories (req , res ){
-    
     const categoryName = req.params.categoryName;
-    res.render('../views/pages/category', { categoryName });
+    const contador = contadorCarrito(req.session.carrito);
+
+    res.render('pages/category', { categoryName, contador });
 }
 
 
@@ -15,4 +17,4 @@ function categories (req , res ){
 
 
 
-module.exports = {categories}
+module.exports = { categories }

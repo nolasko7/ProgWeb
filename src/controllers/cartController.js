@@ -1,5 +1,6 @@
 const { getProductoPorId } = require('../models/products');
 const { stockdown , stockUp} = require('../models/products');
+const { contadorCarrito } = require('../models/carrtio');
 
 function addToCart(req, res) {
 
@@ -49,7 +50,9 @@ function cargarCarrito(req, res) {
 
     const totalCarrito = elementosCarrito.reduce((sum, item) => sum + item.total, 0);
 
-    res.render('pages/cart', { elementosCarrito, totalCarrito });
+    const contador = contadorCarrito(req.session.carrito);
+
+    res.render('pages/cart', { elementosCarrito, totalCarrito , contador });
 }
 
 function incrementarCantidad(req, res) {
@@ -97,5 +100,10 @@ function quitarProducto(req, res) {
 
     res.redirect('/cart/list');
 }
+
+
+
+
+
 
 module.exports = { addToCart, cargarCarrito, incrementarCantidad, decrementarCantidad, quitarProducto };

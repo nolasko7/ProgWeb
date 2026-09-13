@@ -45,7 +45,7 @@
 }
 
 .body-class-caja_login {
-    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgba(0, 0, 0, 0.3)];
+    @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgba(0,0,0,0.3)];
 }
 
 .body-class-caja_login_elementos_email_contraseña {

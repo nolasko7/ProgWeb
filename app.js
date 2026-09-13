@@ -10,6 +10,7 @@ const products = require('./src/models/products');
 const categories = require('./public/data/categories');
 const routerCart = require('./src/routes/routesCart');
 const session = require('express-session');
+const {contadorCarrito} = require('./src/models/carrtio')
 const app = express();
 
 
@@ -30,11 +31,14 @@ app.use(session({
 }));
 
 app.use((req , res , next) => {
-
-    if(!req.session.carrito){
-        /** @type {objetocarrito[]} */
-        req.session.carrito = []
+    if (!req.session) {
+        return next();
     }
+    if (!req.session.carrito) {
+        /** @type {objetocarrito[]} */
+        req.session.carrito = [];
+    }
+    res.locals.contador = contadorCarrito(req.session.carrito);
     next();
 });
 
@@ -64,8 +68,9 @@ app.get("/", (req, res) => {
     const flash = req.session.flash;
     req.session.flash = null;
     const productosMasLlevados = products.productosMasLlevados();
+    const contador = contadorCarrito(req.session.carrito);
 
-    res.render("pages/index", { categories, productos, productosMasLlevados, flash});
+    res.render("pages/index", { categories, productos, productosMasLlevados, flash, contador });
 });
 
 app.use("/product", routerProduct);
@@ -96,9 +101,11 @@ app.listen(PORT,
 )
 
 app.use((req, res) => {
+    const contador = contadorCarrito(req.session.carrito);
     res.status(404).render('pages/error', {
         code: 404,
         message: 'Página no encontrada',
-        categories: categories
+        categories: categories,
+        contador
     });
 })

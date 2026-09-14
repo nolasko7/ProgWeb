@@ -94,14 +94,11 @@ app.use("/category", routerCategory);
 app.use("/checkout", (req,res) => {
     res.render("pages/checkout")
 });
+
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).render('pages/500');
 });
-//LISTEN
-app.listen(PORT,
-    () => console.log("Server is Ready! 🫡")
-)
 
 app.use((req, res) => {
     const contador = contadorCarrito(req.session.carrito);
@@ -112,3 +109,7 @@ app.use((req, res) => {
         contador
     });
 })
+//LISTEN
+app.listen(PORT,
+    () => console.log("Server is Ready! ☝️🤓")
+);

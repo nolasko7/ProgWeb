@@ -107,10 +107,10 @@ app.use("/checkout", (req,res) => {
     res.render("pages/checkout")
 });
 
-//LISTEN
-app.listen(PORT,
-    () => console.log("Server is Ready! 🫡")
-)
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).render('pages/500');
+});
 
 app.use((req, res) => {
     const contador = contadorCarrito(req.session.carrito);
@@ -121,3 +121,7 @@ app.use((req, res) => {
         contador
     });
 })
+//LISTEN
+app.listen(PORT,
+    () => console.log("Server is Ready! ☝️🤓")
+);

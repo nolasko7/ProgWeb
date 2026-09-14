@@ -1,4 +1,18 @@
 {
   "usuarios": [
+    {
+      "id": 1,
+      "nombre": "wachin",
+      "apellido": "washinton",
+      "email": "wachin@wachintong.com",
+      "password": "avionpapa1!"
+    },
+    {
+      "id": 2,
+      "nombre": "asdasda",
+      "apellido": "asdasd",
+      "email": "asdasd@asdas.com",
+      "password": "avion123!"
+    }
   ]
 }

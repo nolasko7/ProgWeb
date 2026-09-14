@@ -87,18 +87,23 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
     res.render("pages/register");
 });
-app.post("/register", (req, res) => {
+app.post("/register", (req, res) => {  
     const { nombre, apellido, email, password } = req.body;
     const resultado = registrarUsuario(nombre, apellido, email, password);
     if (resultado.exito) {
         res.json({ success: true, message: resultado.mensaje });
     } else {
         res.status(400).json({ success: false, errores: resultado.errores });
-    }
+    }   
 });
 
 app.get("/checkout", (req, res) => {
-    res.render("pages/checkout");
+    try{
+        res.render("pages/checkout");   
+    }catch(err){
+        next(err)
+    }
+    
 });
 
 app.use("/category", routerCategory);

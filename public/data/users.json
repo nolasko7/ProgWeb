@@ -13,6 +13,13 @@
       "apellido": "asdasd",
       "email": "asdasd@asdas.com",
       "password": "avion123!"
+    },
+    {
+      "id": 3,
+      "nombre": "asdasd",
+      "apellido": "assdadad",
+      "email": "asdasd@asdasas.com",
+      "password": "avion123!!"
     }
   ]
 }

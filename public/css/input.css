@@ -8,13 +8,21 @@
    Esto es CSS normal, convive sin problema con Tailwind v4.
 ============================================================ */
 @keyframes desvanecerCartel {
-  0%   { opacity: 1; }
-  70%  { opacity: 1; }
-  100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 .cartel-agregado {
-  animation: desvanecerCartel 4s forwards;
+    animation: desvanecerCartel 4s forwards;
 }
 
 
@@ -36,11 +44,11 @@
     @apply my-4 bg-white border-2 border-gray-300 rounded-full w-full p-2;
 }
 
-.body-class-caja_login{
+.body-class-caja_login {
     @apply flex flex-col items-start bg-white rounded-2xl px-7 pt-10 pb-10 max-w-sm shadow-[0_8px_12px_0_rgba(0,0,0,0.3)];
 }
- 
-.body-class-caja_login_elementos_email_contraseña{
+
+.body-class-caja_login_elementos_email_contraseña {
     @apply my-4 bg-white border-2 border-gray-300 rounded-full w-full p-4;
 }
 
@@ -55,4 +63,3 @@
 .btn-primario {
     @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 sm:px-8 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-sm hover:shadow-md cursor-pointer text-center;
 }
-

@@ -20,6 +20,20 @@
       "apellido": "assdadad",
       "email": "asdasd@asdasas.com",
       "password": "avion123!!"
+    },
+    {
+      "id": 4,
+      "nombre": "hola",
+      "apellido": "villegas",
+      "email": "julio@gmail.com",
+      "password": "Fasgae43*"
+    },
+    {
+      "id": 5,
+      "nombre": "julio",
+      "apellido": "villegas",
+      "email": "holasadasd@gmail.com",
+      "password": "Fasgae43*"
     }
   ]
 }

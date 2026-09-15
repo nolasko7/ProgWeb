@@ -4,7 +4,6 @@
 
 
 const express = require('express')
-const { registrarUsuario } = require('./src/controllers/Usuarios');
 const routerCategory = require('./src/routes/routesCategory');
 const routerProduct = require('./src/routes/routesProduct');
 const products = require('./src/models/products');
@@ -13,6 +12,7 @@ const routerCart = require('./src/routes/routesCart');
 const session = require('express-session');
 const {contadorCarrito} = require('./src/models/carrtio')
 const app = express();
+const routerRegister = require('./src/routes/routerRegister');
 
 
 
@@ -84,18 +84,8 @@ app.get("/login", (req, res) => {
     res.render("pages/login");
 });
 
-app.get("/register", (req, res) => {
-    res.render("pages/register");
-});
-app.post("/register", (req, res) => {  
-    const { nombre, apellido, email, password } = req.body;
-    const resultado = registrarUsuario(nombre, apellido, email, password);
-    if (resultado.exito) {
-        res.json({ success: true, message: resultado.mensaje });
-    } else {
-        res.status(400).json({ success: false, errores: resultado.errores });
-    }   
-});
+app.use("/register", routerRegister);
+
 
 app.get("/checkout", (req, res) => {
     try{

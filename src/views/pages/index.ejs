@@ -10,7 +10,7 @@
 
 <body class="bg-[#E5E5E5] min-h-screen flex flex-col">
 
-    <%- include('../partials/header') %> 
+    <%- include('../partials/header'),{contador}%> 
     
     <main class="page-home flex-1">
 
@@ -24,6 +24,12 @@
             <% } %>
 
         <section class="bg-[#E5E5E5] py-8 sm:py-10 px-4">
+            <div class="flex justify-end">
+            <div class=" w-24 bg-[#44C79A] rounded-2xl">
+            
+            </div>
+            </div>
+
 
             <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-gray-900 flex items-center justify-center text-center">
                 Bienvenido a MiEcommerce

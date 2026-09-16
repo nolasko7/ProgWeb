@@ -6,6 +6,11 @@ const products = [
         name: "Whisky Jack Daniels Honey 750ml",
         price: 19900,
         image: "https://cdn.awsli.com.br/2500x2500/2148/2148460/produto/137280811/42ceca746f.jpg",
+        images: [
+            "https://cdn.awsli.com.br/2500x2500/2148/2148460/produto/137280811/42ceca746f.jpg",
+            "https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=600&auto=format&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1620450287187-453bfe1367db?w=600&auto=format&fit=crop&q=80"
+        ],
         description: "Un verdaderamente fabuloso licor de whisky Jack Daniel's. Hecho con una mezcla de ricas especias y suave miel tersa. Delicioso sobre hielo o café.\nAroma de caramelo, roble carbonizado y vainilla.\nBoca cremosa con notas de roble tostado y miel.",
         masPedido: true,
         stock: 0

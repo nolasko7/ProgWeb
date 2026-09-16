@@ -20,12 +20,26 @@
             <p class="text-2xl font-black text-gray-900">
                 <%= producto.price %>
             </p>
-            <p class="text-sm font-black text-gray-500 mb-4"><%= producto.puntos %> puntos</p>
+            <p class="text-sm font-black text-gray-500 mb-2"><%= producto.puntos %> puntos</p>
+            <p class="text-xs font-bold uppercase tracking-wide text-black mb-4">
+                Stock: <%= producto.stock %>
+            </p>
         </div>
     </div>
 
- 
-    <form action="/cart/add" method="POST">
+    <% if (producto.stock === 0) { %>
+
+        <button 
+            type="submit"
+            class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 rounded-xl transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 cursor-not-allowed"
+        >
+            <img src="/images/Carrito.svg" class="h-5 w-5" alt="Carrito">
+            <span>SIN STOCK</span>
+        </button>
+
+    <% } else {%>
+
+         <form action="/cart/add" method="POST">
         <input type="hidden" name="productId" value="<%= producto.id %>">
         <button 
             type="submit"
@@ -35,4 +49,7 @@
             <span>Agregar al carrito</span>
         </button>
     </form>
+
+    <% } %>
+
 </div>

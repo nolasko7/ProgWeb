@@ -87,20 +87,17 @@ app.get("/login", (req, res) => {
 app.use("/register", routerRegister);
 
 
-app.get("/checkout", (req, res) => {
-    try{
-        res.render("pages/checkout");   
-    }catch(err){
-        next(err)
+app.get("/checkout", (req, res, next) => {
+    try {
+        res.render("pages/checkout");
+    } catch (err) {
+        next(err);
     }
-    
 });
 
 app.use("/category", routerCategory);
 
-app.use("/checkout", (req,res) => {
-    res.render("pages/checkout")
-});
+
 
 app.use((err, req, res, next) => {
     console.error(err);

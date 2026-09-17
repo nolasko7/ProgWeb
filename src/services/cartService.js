@@ -1,4 +1,4 @@
-const {stockUp , stockdown, stockDown} = require('../models/products');
+const {stockUp , stockDown , stockReload} = require('../models/products');
 
 
 function ensureCart(session) {
@@ -64,6 +64,10 @@ function decrementQuantity(session, productId) {
 
 function removeProduct(session, productId) {
     const carrito = ensureCart(session);
+    const item = carrito.find( p => p.productId == productId );
+
+    stockReload(item.productId , item.quantity);
+    
     session.carrito = carrito.filter(item => item.productId !== productId);
     return session.carrito;
 }

@@ -399,7 +399,25 @@ function stockUp (id){
 
 }
 
+function stockReload (id , cantidad){
+
+    products.forEach( p=>{
+
+        if(p.id === id){
+
+            p.stock = p.stock + cantidad;
+
+            
+        }
+
+    } )
 
 
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp};
+
+}
+
+
+
+
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload};

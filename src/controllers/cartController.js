@@ -14,12 +14,12 @@ function addToCart(req, res) {
     const item = req.session.carrito.find(i => i.productId === productId);
 
     if (item) {
-        stockdown(productId)
+        stockdown(productId);
         item.quantity++;
         req.session.flash = `${producto.name} ya estaba en el carrito, se sumó otra unidad`;
     } else {
         req.session.carrito.push({ productId, quantity: 1 });
-        stockdown(productId)
+        stockdown(productId);
         req.session.flash = `${producto.name} se agregó al carrito`;
     }
 

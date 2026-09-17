@@ -6,7 +6,7 @@
 const express = require('express')
 const routerCategory = require('./src/routes/routesCategory');
 const routerProduct = require('./src/routes/routesProduct');
-const products = require('./src/models/products');
+const productsService = require('./src/services/productsService');
 const categories = require('./public/data/categories');
 const routerCart = require('./src/routes/routesCart');
 const session = require('express-session');
@@ -75,10 +75,10 @@ app.set("views", path.join(__dirname, "src/views"));
 
 app.get("/", (req, res) => {
 
-    const productos = products.productosRandom();
+    const productos = productsService.getRandomProducts();
     const flash = req.session.flash;
     req.session.flash = null;
-    const productosMasLlevados = products.productosMasLlevados();
+    const productosMasLlevados = productsService.getMostRequestedProducts();
     const contador = contadorCarrito(req.session.carrito);
 
     res.render("pages/index", {

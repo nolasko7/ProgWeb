@@ -1,12 +1,12 @@
 const categories = require('../../public/data/categories');
-const products = require('../models/products');
-const {contadorCarrito} = require('../models/carrtio');
+const { contadorCarrito } = require('../models/carrtio');
+const productsService = require('../services/productsService');
 
 function obtenerProducto(req , res){
 
     const id = parseInt(req.params.id);
-    const productoEncontrado = products.getProductoPorId(id);
-    const productosRandom = products.productosRandom(id);
+    const productoEncontrado = productsService.getProductById(id);
+    const productosRandom = productsService.getRandomProducts(id);
     const contador = contadorCarrito(req.session.carrito);
     
     
@@ -16,7 +16,7 @@ function obtenerProducto(req , res){
 
 
     if (productoEncontrado) {
-        const productosRelacionados = products.productosRandomDelamismaCategoria(productoEncontrado.category, id);
+        const productosRelacionados = productsService.getRelatedProducts(productoEncontrado.category, id);
         res.render("pages/product", {
             titulo: `Producto - ${productoEncontrado.name}`,
             productoEncontrado,

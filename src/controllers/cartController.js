@@ -1,40 +1,27 @@
-const { getProductoPorId } = require('../models/products');
-const { stockdown , stockUp} = require('../models/products');
+const productsService = require('../services/productsService');
+const cartService = require('../services/cartService');
 const { contadorCarrito } = require('../models/carrtio');
 
 function addToCart(req, res) {
-
     const productId = Number(req.body.productId);
-    const producto = getProductoPorId(productId);
+    const producto = productsService.getProductById(productId);
 
     if (!producto) {
         return res.status(404).send('Producto no encontrado');
     }
 
-    const item = req.session.carrito.find(i => i.productId === productId);
-
-    if (item) {
-        stockdown(productId);
-        item.quantity++;
-        req.session.flash = `${producto.name} ya estaba en el carrito, se sumó otra unidad`;
-    } else {
-        req.session.carrito.push({ productId, quantity: 1 });
-        stockdown(productId);
-        req.session.flash = `${producto.name} se agregó al carrito`;
-    }
-
-    // req.get('Referer') = la URL de la página desde donde vino el <form>
+    const { message } = cartService.addProduct(req.session, productId, producto.name);
+    req.session.flash = message;
 
     res.redirect(req.get('Referer'));
 }
 
 function cargarCarrito(req, res) {
-    const carrito = req.session.carrito || [];
-
+    const carrito = cartService.getCart(req.session);
 
     const elementosCarrito = carrito
         .map(item => {
-            const objeto = getProductoPorId(item.productId);
+            const objeto = productsService.getProductById(item.productId);
 
             if (!objeto) {
                 return null;
@@ -49,7 +36,6 @@ function cargarCarrito(req, res) {
         .filter(Boolean);
 
     const totalCarrito = elementosCarrito.reduce((sum, item) => sum + item.total, 0);
-
     const contador = contadorCarrito(req.session.carrito);
 
     res.render('pages/cart', {
@@ -62,47 +48,19 @@ function cargarCarrito(req, res) {
 
 function incrementarCantidad(req, res) {
     const productId = Number(req.params.id);
-    const carrito = req.session.carrito || [];
-    const item = carrito.find(producto => producto.productId === productId);
-    
-    stockdown(productId);
-
-
-    if (item) {
-        item.quantity += 1;
-    }
-
+    cartService.incrementQuantity(req.session, productId);
     res.redirect('/cart/list');
 }
 
 function decrementarCantidad(req, res) {
     const productId = Number(req.params.id);
-    const carrito = req.session.carrito || [];
-
-    
-
-    req.session.carrito = carrito
-        .map(item => {
-            if (item.productId === productId) {
-                stockUp(productId);
-                return {
-                    ...item,
-                    quantity: Math.max(0, Number(item.quantity) - 1)
-                    
-                };
-            }
-
-            return item;
-        })
-        .filter(item => item.quantity > 0);
-
+    cartService.decrementQuantity(req.session, productId);
     res.redirect('/cart/list');
 }
 
 function quitarProducto(req, res) {
     const productId = Number(req.params.id);
-    req.session.carrito = (req.session.carrito || []).filter(item => item.productId !== productId);
-
+    cartService.removeProduct(req.session, productId);
     res.redirect('/cart/list');
 }
 

@@ -360,7 +360,7 @@ function getProductoPorId(id){
 
 function getCategoriaProductos(categoria){
 
-    if(categoria !== "string" || categoria.trim() ===""){
+    if(typeof categoria !== "string" || categoria.trim() ===""){
         throw new Error("La categoria tiene que ser un texto no vacio ")
     }
 

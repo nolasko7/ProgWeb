@@ -1,6 +1,7 @@
 const productsService = require('../services/productsService');
 const cartService = require('../services/cartService');
 const { contadorCarrito } = require('../models/carrtio');
+const { stockDown } = require('../models/products')
 
 function addToCart(req, res) {
     const productId = Number(req.body.productId);
@@ -12,6 +13,9 @@ function addToCart(req, res) {
 
     const { message } = cartService.addProduct(req.session, productId, producto.name);
     req.session.flash = message;
+
+    stockDown(productId);
+    
 
     res.redirect(req.get('Referer'));
 }

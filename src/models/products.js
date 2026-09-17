@@ -374,7 +374,7 @@ function getCategoriaProductos(categoria){
 
 }
 
-function stockdown (id){
+function stockDown (id){
 
     products.forEach(p =>{
 
@@ -402,4 +402,4 @@ function stockUp (id){
 
 
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockdown , stockUp};
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp};

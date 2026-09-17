@@ -1,3 +1,6 @@
+const {stockUp , stockdown, stockDown} = require('../models/products');
+
+
 function ensureCart(session) {
     if (!session.carrito) {
         session.carrito = [];
@@ -33,6 +36,8 @@ function incrementQuantity(session, productId) {
         item.quantity += 1;
     }
 
+    stockDown(productId);
+
     return carrito;
 }
 
@@ -51,6 +56,8 @@ function decrementQuantity(session, productId) {
             return item;
         })
         .filter(item => item.quantity > 0);
+
+        stockUp(productId);
 
     return session.carrito;
 }

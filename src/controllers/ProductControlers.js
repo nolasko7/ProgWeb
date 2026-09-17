@@ -17,9 +17,22 @@ function obtenerProducto(req , res){
 
     if (productoEncontrado) {
         const productosRelacionados = products.productosRandomDelamismaCategoria(productoEncontrado.category, id);
-        res.render("pages/product", {productoEncontrado, categories , productosRandom, productosRelacionados, flash ,contador });
+        res.render("pages/product", {
+            titulo: `Producto - ${productoEncontrado.name}`,
+            productoEncontrado,
+            categories,
+            productosRandom,
+            productosRelacionados,
+            flash,
+            contador
+        });
     } else {
-        res.status(404).render("pages/error", { code: 404, message: "Producto no encontrado", categories });
+        res.status(404).render("pages/error", {
+            titulo: "Producto no encontrado",
+            code: 404,
+            message: "Producto no encontrado",
+            categories
+        });
     }
 
 }

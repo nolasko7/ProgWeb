@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof titulo !== 'undefined' ? titulo : 'MiEcommerce' %></title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body class="bg-[#E5E5E5] min-h-screen flex flex-col">
+    <%- include('../partials/header', { contador: typeof contador !== 'undefined' ? contador : 0 }) %>
+
+    <main class="flex-1">
+        <%- body %>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

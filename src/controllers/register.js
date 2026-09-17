@@ -16,7 +16,7 @@ function metodoPost (req , res){
 }
 
 function metodoGet (req , res ){
-    res.render("pages/register");
+    res.render("pages/register", { titulo: "Registro" });
 }
 
 module.exports = {metodoGet , metodoPost};

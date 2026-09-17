@@ -1,54 +1,34 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse</title>
-    <link rel="stylesheet" href="/css/output.css">
-</head>
-<body class="bg-[#F3F1F3] min-h-screen flex flex-col">
-  <%- include('../partials/header'), {contador} %> 
-  <main class="body-main-class relative flex-1">
 
-        
-        <div class="bg-[#44C79A] h-78 "></div>
+<div class="bg-[#44C79A] h-78"></div>
 
-        <div class="body-class-caja_GU -mt-60 relative z-10 mx-auto">
+<div class="body-class-caja_GU -mt-60 relative z-10 mx-auto">
+    <a href="/"><img src="/images/flechaHome.png"></a>
 
-            <a href="/"><img src="/images/flechaHome.png"> </a><!-- Boton de para ir al inicio-->
+    <h1 class="my-4 text-3xl">¡Bienvenido!</h1>
 
-            <h1 class="my-4 text-3xl">¡Bienvenido!</h1>
+    <div class="w-full mb-4" id="error-general"></div>
 
-            <div class="w-full mb-4" id="error-general"></div>
+    <form action="/register" method="POST" class="flex flex-col items-start w-full" id="registerForm" novalidate>
+        <input class="body-class-caja_GU_elemento_a" type="text" name="Nombre" id="nombre" placeholder="Ingrese su nombre">
+        <span class="error-msg text-red-500 text-sm mt-1 block" id="error-nombre"></span>
+        <input class="body-class-caja_GU_elemento_a" type="text" name="Apellido" id="apellido" placeholder="Ingrese su apellido">
+        <span class="error-msg text-red-500 text-sm mt-1 block" id="error-apellido"></span>
+        <input class="body-class-caja_GU_elemento_a" type="email" name="Email" id="email" placeholder="Ingresa tu email">
+        <span class="error-msg text-red-500 text-sm mt-1 block" id="error-email"></span>
+        <input class="body-class-caja_GU_elemento_a" type="password" name="password" id="password" placeholder="Ingresa tu contraseña">
+        <span class="error-msg text-red-500 text-sm mt-1 block" id="error-password"></span>
+        <button type="submit" class="my-3 w-full text-gray-50 bg-mist-600 text-center rounded-full py-2 cursor-pointer transition-colors duration-300 hover:bg-mist-900">Registrarse</button>
+    </form>
+</div>
 
-            <form action="/register" method="POST" class="flex flex-col items-start w-full" id="registerForm" novalidate>
-                <input class="body-class-caja_GU_elemento_a" type="text" name="Nombre" id="nombre" placeholder="Ingrese su nombre" >
-                <span class="error-msg text-red-500 text-sm mt-1 block" id="error-nombre"></span>
-                <input class="body-class-caja_GU_elemento_a" type="text" name="Apellido" id="apellido" placeholder="Ingrese su apellido" >
-                <span class="error-msg text-red-500 text-sm mt-1 block" id="error-apellido"></span>
-                <input class="body-class-caja_GU_elemento_a" type="email" name="Email" id="email" placeholder="Ingresa tu email" >
-                <span class="error-msg text-red-500 text-sm mt-1 block" id="error-email"></span>
-                <input class="body-class-caja_GU_elemento_a" type="password" name="password" id="password" placeholder="Ingresa tu contraseña" >
-                <span class="error-msg text-red-500 text-sm mt-1 block" id="error-password"></span>
-                <button type="submit" class="my-3 w-full text-gray-50 bg-mist-600 text-center rounded-full py-2 cursor-pointer transition-colors duration-300 hover:bg-mist-900">Registrarse</button>
+<p class="text-center mt-10 pb-10">¿Tenes una cuenta existente?<a class="underline underline-offset-4" href="/login"> Inicia Sesión</a></p>
 
-            </form>
+<div id="loadingOverlay" class="hidden fixed inset-0 bg-black/60 flex flex-col items-center justify-center z-50 text-white">
+    <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+    <p><strong>¡¡¡Registro Exitoso!!!</strong></p>
+    <p><strong>Redirigiendo al inicio de sesión...</strong></p>
+</div>
 
-        </div>
+<script src="/js/validacion.js" defer></script>
 
-        <p class="text-center mt-10  pb-10">¿Tenes una cuenta existente?<a class="underline underline-offset-4"href="/login"> Inicia Sesión</a></p>
-        
-    </main>
-
-    <div id="loadingOverlay" class="hidden fixed inset-0 bg-black/60 flex flex-col items-center justify-center z-50 text-white">
-        <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
-        <p><strong>¡¡¡Registro Exitoso!!!</strong></p>
-        <p><strong>Redirigiendo al inicio de sesión...</strong></p>
-    </div>
-
-    <%- include('../partials/footer') %>
-    <script src="/js/validacion.js" defer></script>
-</body>
-
-</html>
 

@@ -13,8 +13,16 @@ const session = require('express-session');
 const {contadorCarrito} = require('./src/models/carrtio')
 const app = express();
 const routerRegister = require('./src/routes/routerRegister');
+const expressLayouts  =  require ( 'express-ejs-layouts' ) ;
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ------------------------        Configuracion de layouts             --------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "pages/layouts");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ------------------------ Configuracion para poder utiliar el carrito --------------------------------------//
@@ -73,7 +81,14 @@ app.get("/", (req, res) => {
     const productosMasLlevados = products.productosMasLlevados();
     const contador = contadorCarrito(req.session.carrito);
 
-    res.render("pages/index", { categories, productos, productosMasLlevados, flash, contador });
+    res.render("pages/index", {
+  titulo: "Inicio",
+  categories,
+  productos,
+  productosMasLlevados,
+  flash,
+  contador
+});
 });
 
 app.use("/product", routerProduct);
@@ -81,7 +96,7 @@ app.use("/product", routerProduct);
 app.use("/cart", routerCart);
 
 app.get("/login", (req, res) => {
-    res.render("pages/login");
+    res.render("pages/login", { titulo: "Login" });
 });
 
 app.use("/register", routerRegister);
@@ -89,7 +104,7 @@ app.use("/register", routerRegister);
 
 app.get("/checkout", (req, res, next) => {
     try {
-        res.render("pages/checkout");
+        res.render("pages/checkout", { titulo: "Checkout" });
     } catch (err) {
         next(err);
     }

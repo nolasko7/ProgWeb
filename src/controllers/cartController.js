@@ -52,7 +52,12 @@ function cargarCarrito(req, res) {
 
     const contador = contadorCarrito(req.session.carrito);
 
-    res.render('pages/cart', { elementosCarrito, totalCarrito , contador });
+    res.render('pages/cart', {
+        titulo: 'Carrito',
+        elementosCarrito,
+        totalCarrito,
+        contador
+    });
 }
 
 function incrementarCantidad(req, res) {

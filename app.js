@@ -14,6 +14,7 @@ const {contadorCarrito} = require('./src/models/carrtio')
 const app = express();
 const routerRegister = require('./src/routes/routerRegister');
 const expressLayouts  =  require ( 'express-ejs-layouts' ) ;
+const search = require('./src/routes/search');
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +59,7 @@ app.use((req , res , next) => {
 
 const path = require("path");
 const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
+const { searchControl } = require('./src/controllers/searchControlers');
 
 const PORT = process.env.PORT || 3000;
 
@@ -90,6 +92,8 @@ app.get("/", (req, res) => {
   contador
 });
 });
+
+app.use("/search" , search);
 
 app.use("/product", routerProduct);
 

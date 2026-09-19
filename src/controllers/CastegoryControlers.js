@@ -1,11 +1,9 @@
 const { contadorCarrito } = require('../models/carrtio');
 const productsService = require('../services/productsService');
 
-
 function categories(req, res) {
-
     const categoryName = req.params.categoryName;
-    const { sort } = req.query; 
+    const { sort } = req.query;
 
     let productos = productsService.getProductsByCategory(categoryName);
 
@@ -14,6 +12,7 @@ function categories(req, res) {
     } else if (sort === 'desc') {
         productos = [...productos].sort((a, b) => b.price - a.price);
     }
+
     const contador = contadorCarrito(req.session.carrito);
 
     res.render('pages/category', {
@@ -24,11 +23,6 @@ function categories(req, res) {
         sort: sort || 'default'
     });
 }
-
-
-
-
-
 
 
 

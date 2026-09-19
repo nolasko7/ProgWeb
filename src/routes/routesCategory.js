@@ -1,9 +1,7 @@
-const express = require('express');
+const express = require('express');
 const router = express.Router();
-const { categories , busqueda } = require('../controllers/CastegoryControlers');
+const { categories } = require('../controllers/CastegoryControlers');
+
+router.get('/:categoryName', categories);
+
 module.exports = router;
-
-
-router.get('/:categoryName', categories );
-
-router.get('/busqueda', busqueda);

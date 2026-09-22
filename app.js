@@ -56,19 +56,14 @@ app.use((req , res , next) => {
 // ----------------------------------Configuracion del servidor ----------------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 const path = require("path");
-const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
-const { searchControl } = require('./src/controllers/searchControlers');
-
 const PORT = process.env.PORT || 3000;
-
-app.use(express.urlencoded({ extended: true }));
-app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true })); //middleware que parsea el body de formularios HTML (<form method="POST">). Sin esto, req.body sería undefined
+app.set("view engine", "ejs"); //le dice a Express que use EJS para renderizar
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "src/views")); //le dice dónde buscar los archivos .ejs.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ----------------------------  app.use PARA PODER IR A LAS DISTNTAS RUTAS  ---------------------------------//

@@ -7,7 +7,6 @@ const express = require('express')
 const routerCategory = require('./src/routes/routesCategory');
 const routerProduct = require('./src/routes/routesProduct');
 const productsService = require('./src/services/productsService');
-const categories = require('./public/data/categories');
 const routerCart = require('./src/routes/routesCart');
 const session = require('express-session');
 const {contadorCarrito} = require('./src/models/carrtio')
@@ -15,7 +14,8 @@ const app = express();
 const routerRegister = require('./src/routes/routerRegister');
 const expressLayouts  =  require ( 'express-ejs-layouts' ) ;
 const search = require('./src/routes/search');
-
+const getCategorias = require("./src/models/category");
+const categories = getCategorias.getCategorias();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ------------------------        Configuracion de layouts             --------------------------------------//
@@ -77,7 +77,6 @@ app.get("/", (req, res) => {
     req.session.flash = null;
     const productosMasLlevados = productsService.getMostRequestedProducts();
     const contador = contadorCarrito(req.session.carrito);
-
     res.render("pages/index", {
   titulo: "Inicio",
   categories,

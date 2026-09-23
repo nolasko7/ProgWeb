@@ -37,14 +37,15 @@
                 </h1>
                 <div class="w-full md:w-3/5 flex flex-col-reverse md:flex-row gap-4 p-0">
                     <div class="flex flex-row md:flex-col gap-2 shrink-0">
-                       <% const imagenes = productoEncontrado.images || [productoEncontrado.image, productoEncontrado.image, productoEncontrado.image]; %>
+                       <% const imagenPrincipal = productoEncontrado.images_main || productoEncontrado.image || '/images/images.jpg'; %>
+                       <% const imagenes = Array.isArray(productoEncontrado.images) ? productoEncontrado.images : [imagenPrincipal]; %>
                        <% imagenes.forEach((img, index) => { %>
                             <img src="<%= img || '/images/images.jpg'%>" alt="Vista <%= index + 1 %> de <%= productoEncontrado.name %>"
                                   class="miniatura w-14 h-14 object-cover rounded-lg cursor-pointer hover:opacity-75 border-2 <%= index === 0 ? 'border-black' : 'border-transparent' %>"
                                   onclick="document.querySelectorAll('.miniatura').forEach(el => { el.classList.remove('border-black'); el.classList.add('border-transparent'); }); this.classList.remove('border-transparent'); this.classList.add('border-black'); const principal = document.getElementById('imagenPrincipal'); principal.onerror = function(){ this.onerror=null; this.src='/images/images.jpg'; }; principal.src = this.src">
                           <% }) %>
                     </div>
-                    <img id="imagenPrincipal" src="<%= productoEncontrado.image || '/images/images.jpg' %>" alt="<%= productoEncontrado.name %>"
+                    <img id="imagenPrincipal" src="<%= imagenPrincipal %>" alt="<%= productoEncontrado.name %>"
                         class="w-full h-64 md:w-auto md:h-full md:flex-1 md:min-w-0 object-cover rounded-lg"
                         onerror="this.onerror=null;this.src='/images/images.jpg';">
                 </div>

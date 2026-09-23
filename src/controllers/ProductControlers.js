@@ -1,4 +1,5 @@
-const categories = require('../../public/data/categories');
+const { getCategorias } = require('../models/category');
+
 const { contadorCarrito } = require('../models/carrtio');
 const productsService = require('../services/productsService');
 
@@ -17,6 +18,7 @@ function normalizeId(value) {
 }
 
 function obtenerProducto(req, res) {
+    const categories = getCategorias();
     const id = normalizeId(req.params.id);
 
     if (id === null) {
@@ -43,7 +45,7 @@ function obtenerProducto(req, res) {
         });
     }
 
-    const productosRelacionados = productsService.getRelatedProducts(productoEncontrado.category, id);
+    const productosRelacionados = productsService.getRelatedProducts(productoEncontrado.id_Category , id);
 
     return res.render("pages/product", {
         titulo: `Producto - ${productoEncontrado.name}`,

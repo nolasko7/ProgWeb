@@ -4,7 +4,7 @@
     <div class="flex justify-between items-center">
 
         <div class="flex order-1 items-center min-w-0 ">
-            <img class="shrink-0 p-2 rounded-4xl" src=" <%= elementosCarrito.objeto.image %>" alt="logo" width="90" height="90">
+            <img class="shrink-0 p-2 rounded-4xl" src="<%= elementosCarrito.objeto.images_main || elementosCarrito.objeto.image || '/images/images.jpg' %>" alt="logo" width="90" height="90">
             <p class="flex items-center pl-5 truncate"><%= elementosCarrito.objeto.name  %> </p>
 
         </div>

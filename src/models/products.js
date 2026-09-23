@@ -1,16 +1,16 @@
 
-const database = require("../db/index");
-
-
-
+    const database = require("../db/index");
 
 
 function productosRandom(id){
-    const productosDisponibles = id === undefined
-        ? products
-        : products.filter(product => product.id !== parseInt(id));
+    
+    const productosDisponibles = database.prepare("SELECT * FROM products ").all(); // hago esto ya que no tengo una llamada que me productos ramdom 
+    
+        const filtrados = id === undefined
+        ? productosDisponibles
+        : productosDisponibles.filter(product => product.id !== parseInt(id));
 
-    return [...productosDisponibles]
+    return [...filtrados]
         .sort(() => Math.random() - 0.5)
         .slice(0, 5);
 }
@@ -19,25 +19,58 @@ function productosRandomDelamismaCategoria(categoria, id){
     if(!categoria){
         return [];
     }
-    const productosDisponibles = products.filter(product => {
-        return product.category.toLowerCase() === categoria.toLowerCase() && product.id !== parseInt(id);
-    });
-    return [...productosDisponibles]
+
+    const nombreCategoria = categoria;
+
+    const productosFiltrados = id 
+    ? database.prepare(`
+        SELECT *
+        FROM products p
+        INNER JOIN categories c ON p.id_Category = c.id
+        WHERE LOWER(c.name) = LOWER(?) AND p.id != ?
+    `).all(nombreCategoria , parseInt(id))
+
+    :database.prepare(`
+        SELECT *
+        FROM products p
+        INNER JOIN categories c ON p.id_Category = c.id
+        WHERE LOWER(c.name) = LOWER(?)
+    `).all(nombreCategoria);
+
+
+    return [...productosFiltrados]
         .sort(() => Math.random() - 0.5)
         .slice(0, 4);
 }
 
+
+function ordenarProductos(categoria, orden) {
+    const direccion = orden?.toUpperCase() === "DESC" ? "DESC" : "ASC";
+
+    const productos = database.prepare(`
+        SELECT *
+        FROM products p
+        INNER JOIN categories c ON p.id_Category = c.id
+        WHERE LOWER(c.name) = LOWER(?)
+        ORDER BY price ${direccion}
+    `).all(categoria);
+
+    return productos;
+}
+
+
+
 function productosMasLlevados(){
-    return [...products].sort((a, b) => b.puntos - a.puntos).slice(0, 5)
+    return database.prepare("SELECT * FROM products ORDER BY maspedido DESC LIMIT 5").all();
 }
 
 
 function getTodosProductos(){
-    return products
+    return database.prepare("SELECT * FROM products").all();
 }
 
 function getProductoPorId(id){
-    return products.find(product => product.id === parseInt(id));
+    return database.prepare("SELECT * FROM products WHERE id = ?").get(id);
 }
 
 function getCategoriaProductos(categoria){
@@ -46,60 +79,41 @@ function getCategoriaProductos(categoria){
         throw new Error("La categoria tiene que ser un texto no vacio ")
     }
 
+    const nombreCategoria = categoria.trim();
 
-    const prodcutosFiltrados = products.filter(product => {
-        return product.category.toLocaleLowerCase() === categoria.toLocaleLowerCase() // funcion que hacea que las categorias no sean sencibles con las mayusculas 
+    const productosFiltrados = database.prepare(`
+        SELECT *
+        FROM products p
+        INNER JOIN categories c ON p.id_Category = c.id
+        WHERE LOWER(c.name) = LOWER(?)
+    `).all(nombreCategoria);
 
-    })
-
-    return prodcutosFiltrados
-
+    return productosFiltrados
 }
 
-function stockDown (id){
-
-    products.forEach(p =>{
-
-        if( p.id === id )
-        {
-        p.stock = p.stock - 1 ;
-            return;
-        }
-    })
+function stockDown(id) {
+  return database.prepare(
+    "UPDATE products SET stock = stock - 1 WHERE id = ?"
+  ).run(id);
 }
 
-function stockUp (id){
 
-    products.forEach(p =>{
-
-        if( p.id === id )
-        {
-        p.stock = p.stock + 1 ;
-            return;
-        }
-    })
-
-}
-
-function stockReload (id , cantidad){
-
-    products.forEach( p=>{
-
-        if(p.id === id){
-
-            p.stock = p.stock + cantidad;
-
-            
-        }
-
-    } )
-
-
-
-
+function stockUp(id) {
+  return database.prepare(
+    "UPDATE products SET stock = stock + 1 WHERE id = ?"
+  ).run(id);
 }
 
 
 
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload};
+function stockReload(id , cantidad) {
+  return database.prepare(
+    "UPDATE products SET stock = ? WHERE id = ?"
+  ).run(cantidad , id);
+}
+
+
+
+
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos};

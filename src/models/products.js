@@ -24,42 +24,14 @@ function productosRandomDelamismaCategoria(categoria, id){
 
     const productosFiltrados = id 
     ? database.prepare(`
-        SELECT
-            p.id,
-            p.id_Category,
-            p.name,
-            p.price,
-            p.images_main,
-            p.images_2,
-            p.images_3,
-            p.images_4,
-            p.description,
-            p.stock,
-            p.maspedido,
-            c.id AS category_id,
-            c.name AS category_name,
-            c.photo AS category_photo
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?) AND p.id != ?
     `).all(nombreCategoria , parseInt(id))
 
     :database.prepare(`
-        SELECT
-            p.id,
-            p.id_Category,
-            p.name,
-            p.price,
-            p.images_main,
-            p.images_2,
-            p.images_3,
-            p.images_4,
-            p.description,
-            p.stock,
-            p.maspedido,
-            c.id AS category_id,
-            c.name AS category_name,
-            c.photo AS category_photo
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)
@@ -76,21 +48,7 @@ function ordenarProductos(categoria, orden) {
     const direccion = orden?.toUpperCase() === "DESC" ? "DESC" : "ASC";
 
     const productos = database.prepare(`
-        SELECT
-            p.id,
-            p.id_Category,
-            p.name,
-            p.price,
-            p.images_main,
-            p.images_2,
-            p.images_3,
-            p.images_4,
-            p.description,
-            p.stock,
-            p.maspedido,
-            c.id AS category_id,
-            c.name AS category_name,
-            c.photo AS category_photo
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)
@@ -124,21 +82,7 @@ function getCategoriaProductos(categoria){
     const nombreCategoria = categoria.trim();
 
     const productosFiltrados = database.prepare(`
-        SELECT
-            p.id,
-            p.id_Category,
-            p.name,
-            p.price,
-            p.images_main,
-            p.images_2,
-            p.images_3,
-            p.images_4,
-            p.description,
-            p.stock,
-            p.maspedido,
-            c.id AS category_id,
-            c.name AS category_name,
-            c.photo AS category_photo
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)

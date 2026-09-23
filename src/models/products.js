@@ -24,14 +24,14 @@ function productosRandomDelamismaCategoria(categoria, id){
 
     const productosFiltrados = id 
     ? database.prepare(`
-        SELECT *
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?) AND p.id != ?
     `).all(nombreCategoria , parseInt(id))
 
     :database.prepare(`
-        SELECT *
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)
@@ -48,7 +48,7 @@ function ordenarProductos(categoria, orden) {
     const direccion = orden?.toUpperCase() === "DESC" ? "DESC" : "ASC";
 
     const productos = database.prepare(`
-        SELECT *
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)
@@ -82,7 +82,7 @@ function getCategoriaProductos(categoria){
     const nombreCategoria = categoria.trim();
 
     const productosFiltrados = database.prepare(`
-        SELECT *
+        SELECT p.*
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)

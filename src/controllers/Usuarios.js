@@ -1,33 +1,33 @@
-const fs = require('fs');
-const path = require('path');
-
-const usersFile = path.join(__dirname, '../../public/data/users.json');
+const db = require("../db");
 
 function registrarUsuario(nombre, apellido, email, password) {
-    // Leer el archivo JSON
-    const datos = JSON.parse(fs.readFileSync(usersFile, 'utf-8'));
-
-    // Verificar si el email ya existe
-    if (datos.usuarios.some(u => u.email === email)) {
+    const existente = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
+    if (existente) {
         return {
             exito: false,
             errores: [{ campo: "email", mensaje: "El email ya está registrado" }]
         };
     }
 
-    // Agregar nuevo usuario
-    datos.usuarios.push({
-        id: datos.usuarios.length + 1,
-        nombre,
-        apellido,
-        email,
-        password
-    });
+    try {
+        const name = `${nombre} ${apellido}`;
+        // TODO: reemplazar por bcrypt.hash(password, 10) cuando corresponda
+        const password_hash = password;
 
-    // Guardar en el archivo
-    fs.writeFileSync(usersFile, JSON.stringify(datos, null, 2));
+        const stmt = db.prepare(
+            "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)"
+        );
+        stmt.run(name, email, password_hash);
 
-    return { exito: true, mensaje: "Registro exitoso" };
+        return { exito: true, mensaje: "Registro exitoso" };
+
+    } catch (error) {
+        console.error(error);
+        return {
+            exito: false,
+            errores: [{ campo: "general", mensaje: "Error interno al registrar el usuario" }]
+        };
+    }
 }
 
 module.exports = { registrarUsuario };

@@ -14,6 +14,7 @@ const app = express();
 const routerRegister = require('./src/routes/routerRegister');
 const expressLayouts  =  require ( 'express-ejs-layouts' ) ;
 const search = require('./src/routes/search');
+require("./src/db/schema/Iindex");
 const getCategorias = require("./src/models/category");
 const categories = getCategorias.getCategorias();
 

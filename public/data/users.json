@@ -34,6 +34,13 @@
       "apellido": "villegas",
       "email": "holasadasd@gmail.com",
       "password": "Fasgae43*"
+    },
+    {
+      "id": 6,
+      "nombre": "julio",
+      "apellido": "villegas",
+      "email": "juliosadasdas@gmail.com",
+      "password": "Fasgae43*"
     }
   ]
 }

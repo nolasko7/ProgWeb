@@ -1,14 +1,12 @@
-
-
 const SITE_NAME = "MiEcommerce";
 const FORBIDDEN_STRINGS = ["password", "1234", "qwerty"];
 const SPECIAL_CHARS_REGEX = /[!@#$%^&*(),.?":{}|<>]/;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;//controla que se escriba bien el gmail
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const LETTER_REGEX = /[a-zA-Z]/;
 const NUMBER_REGEX = /[0-9]/;
 
 function validarNoVacio(valor, nombreCampo) {
-    if (valor.length === 0) {
+    if (!valor || valor.trim().length === 0) {
         return { valido: false, mensaje: `El campo ${nombreCampo} no puede estar vacío.` };
     }
     return { valido: true };
@@ -54,7 +52,6 @@ function validarPasswordTieneCaracterEspecial(password) {
 
 function validarPasswordSinCadenasProhibidas(password, nombre, apellido) {
     const passwordLower = password.toLowerCase();
-
     const prohibidas = [
         ...FORBIDDEN_STRINGS,
         SITE_NAME.toLowerCase(),
@@ -79,7 +76,6 @@ function validarPasswordDistintaDelEmail(password, email) {
     }
     return { valido: true };
 }
-
 
 function validarFormulario(datos) {
     const errores = [];
@@ -119,7 +115,6 @@ function validarFormulario(datos) {
     return errores;
 }
 
-
 function agruparErroresPorCampo(errores) {
     const agrupado = {};
     errores.forEach((err) => {
@@ -131,96 +126,16 @@ function agruparErroresPorCampo(errores) {
     return agrupado;
 }
 
-function limpiarErrores() {
-    document.querySelectorAll(".error-msg").forEach((contenedor) => {
-        contenedor.innerHTML = "";
-    });
-    const general = document.getElementById("error-general");
-    if (general) general.textContent = "";
-}
-
-function mostrarErrores(erroresAgrupados) {
-    limpiarErrores();
-
-    Object.keys(erroresAgrupados).forEach((campo) => {
-        const contenedor = document.getElementById("error-" + campo);
-        if (!contenedor) return;
-
-        const mensajes = erroresAgrupados[campo];
-
-        if (mensajes.length === 1) {
-            contenedor.textContent = mensajes[0];
-        } else {
-            const ul = document.createElement("ul");
-            ul.className = "list-disc list-inside";
-            mensajes.forEach((msg) => {
-                const li = document.createElement("li");
-                li.textContent = msg;
-                ul.appendChild(li);
-            });
-            contenedor.appendChild(ul);
-        }
+function renderRegister(res, datos, errores) {
+    return res.status(400).render("pages/register", {
+        titulo: "Registro",
+        datos: datos || {},
+        errores: agruparErroresPorCampo(errores || [])
     });
 }
 
-function mostrarErrorGeneral(mensaje) {
-    const general = document.getElementById("error-general");
-    if (general) general.textContent = mensaje;
-}
-function mostrarLoadingOverlay() {
-    const overlay = document.getElementById("loadingOverlay");
-    overlay.classList.remove("hidden");
-}
-async function enviarRegistro(datos) {
-    try {
-        const response = await fetch("/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(datos),
-        });
-
-        const resultado = await response.json();
-
-        if (!response.ok) {//errores de las validaciones
-            if (resultado.errores) {
-                mostrarErrores(agruparErroresPorCampo(resultado.errores));
-            } else {
-                mostrarErrorGeneral(resultado.mensaje || "Ocurrió un error al registrarte. Probá de nuevo.");
-            }
-            return;
-        }
-
-        // Registro exitoso
-        limpiarErrores();
-        mostrarLoadingOverlay();
-        setTimeout(() => {
-            window.location.href = "/login";
-        }, 5000);
-    } catch (error) {
-        // Error de red (servidor caído, sin conexión, etc.)
-        mostrarErrorGeneral("No se pudo conectar con el servidor. Probá de nuevo en unos segundos.");
-    }
-}
-
-
-
-
-document.getElementById("registerForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const datos = {
-        nombre: document.getElementById("nombre").value.trim(),
-        apellido: document.getElementById("apellido").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        password: document.getElementById("password").value.trim(),
-    };
-
-    const errores = validarFormulario(datos);
-    mostrarErrores(agruparErroresPorCampo(errores));
-
-    if (errores.length > 0) {
-        return;
-    }
-
-    enviarRegistro(datos);
-});
+module.exports = {
+    validarFormulario,
+    agruparErroresPorCampo,
+    renderRegister,
+};

@@ -52,7 +52,7 @@ function ordenarProductos(categoria, orden) {
         FROM products p
         INNER JOIN categories c ON p.id_Category = c.id
         WHERE LOWER(c.name) = LOWER(?)
-        ORDER BY price ${direccion}
+        ORDER BY p.price ${direccion}
     `).all(categoria);
 
     return productos;

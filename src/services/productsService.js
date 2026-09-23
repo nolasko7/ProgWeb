@@ -42,6 +42,20 @@ function getProductosOrdenados(categoria , orden){
     return productsModel.ordenarProductos(categoria , orden);
 }
 
+function normalizeId(value) {
+    if(value === undefined || value === null || value === ''){
+       return null;
+    }
+
+    const id = Number(value);
+
+    if(!Number.isInteger(id) || id <= 0) {
+        return null;
+    }
+
+    return id;
+}
+
 module.exports = {
     getRandomProducts,
     getRelatedProducts,
@@ -49,5 +63,6 @@ module.exports = {
     getAllProducts,
     getProductById,
     getProductsByCategory,
-    getProductosOrdenados
+    getProductosOrdenados,
+    normalizeId
 };

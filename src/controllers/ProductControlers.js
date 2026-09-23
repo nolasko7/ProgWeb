@@ -3,23 +3,9 @@ const { getCategorias } = require('../models/category');
 const { contadorCarrito } = require('../models/carrtio');
 const productsService = require('../services/productsService');
 
-function normalizeId(value) {
-    if (value === undefined || value === null || value === '') {
-        return null;
-    }
-
-    const id = Number(value);
-
-    if (!Number.isInteger(id) || id <= 0) {
-        return null;
-    }
-
-    return id;
-}
-
 function obtenerProducto(req, res) {
     const categories = getCategorias();
-    const id = normalizeId(req.params.id);
+    const id = productsService.normalizeId(req.params.id);
 
     if (id === null) {
         return res.status(400).render("pages/error", {

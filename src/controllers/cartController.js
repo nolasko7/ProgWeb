@@ -8,7 +8,7 @@ function addToCart(req, res) {
         return res.status(400).send('ID no valido');
     }
     const producto = productsService.getProductById(productId);
-    const productId = Number(req.body.productId);
+    
     const resultado = cartService.addProduct(req.session, productId);
 
     if (!resultado.success) {

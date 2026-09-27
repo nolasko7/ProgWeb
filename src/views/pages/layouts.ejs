@@ -35,6 +35,14 @@
                 text.textContent      = 'Conectado';
             };
 
+            ws.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                if (data.type === 'cart-update') {
+                    var el = document.getElementById('cart-count');
+                    if (el) el.textContent = data.count;
+                }
+            };
+
             ws.onclose = function () {
                 dot.style.background  = '#ef4444';
                 text.textContent      = 'Desconectado';

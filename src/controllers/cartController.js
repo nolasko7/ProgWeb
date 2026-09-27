@@ -2,6 +2,7 @@ const productsService = require('../services/productsService');
 const cartService = require('../services/cartService');
 const { contadorCarrito } = require('../models/carrtio');
 const { stockDown } = require('../models/products')
+const { broadcast } = require('../websocket');
 
 function addToCart(req, res) {
     const productId = Number(req.body.productId);
@@ -16,6 +17,7 @@ function addToCart(req, res) {
 
     stockDown(productId);
     
+    broadcast({ type: 'cart-update', count: contadorCarrito(req.session.carrito) });
 
     res.redirect(req.get('Referer'));
 }
@@ -53,18 +55,21 @@ function cargarCarrito(req, res) {
 function incrementarCantidad(req, res) {
     const productId = Number(req.params.id);
     cartService.incrementQuantity(req.session, productId);
+    broadcast({ type: 'cart-update', count: contadorCarrito(req.session.carrito) });
     res.redirect('/cart/list');
 }
 
 function decrementarCantidad(req, res) {
     const productId = Number(req.params.id);
     cartService.decrementQuantity(req.session, productId);
+    broadcast({ type: 'cart-update', count: contadorCarrito(req.session.carrito) });
     res.redirect('/cart/list');
 }
 
 function quitarProducto(req, res) {
     const productId = Number(req.params.id);
     cartService.removeProduct(req.session, productId);
+    broadcast({ type: 'cart-update', count: contadorCarrito(req.session.carrito) });
     res.redirect('/cart/list');
 }
 

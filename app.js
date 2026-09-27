@@ -4,6 +4,8 @@
 
 
 const express = require('express')
+const http = require('http');
+const ws = require('./src/websocket');
 const routerCategory = require('./src/routes/routesCategory');
 const routerProduct = require('./src/routes/routesProduct');
 const productsService = require('./src/services/productsService');
@@ -127,7 +129,7 @@ app.use((req, res) => {
         contador
     });
 })
-//LISTEN
-app.listen(PORT,
-    () => console.log("Server is Ready! ☝️🤓")
-);
+//LISTEN – servidor HTTP + WebSocket
+const server = http.createServer(app);
+ws.init(server);
+server.listen(PORT, () => console.log("Server is Ready! ☝️🤓"));

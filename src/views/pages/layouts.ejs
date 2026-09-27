@@ -63,7 +63,7 @@
                                 if (!exists) row.remove();
                             });
 
-                            // Actualizar cantidades y subtotales
+                            // Actualizar o insertar items
                             data.items.forEach(function (item) {
                                 var row = container.querySelector('[data-product-id="' + item.id + '"]');
                                 if (row) {
@@ -71,6 +71,36 @@
                                     var sub = row.querySelector('.cart-item-subtotal');
                                     if (qty) qty.textContent = item.cantidad;
                                     if (sub) sub.textContent = '$ ' + item.subtotal.toLocaleString();
+                                } else {
+                                    var newRow = document.createElement('div');
+                                    newRow.className = 'flex flex-col my-4 border border-white py-2 rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.15)] bg-white shrink-0';
+                                    newRow.setAttribute('data-product-id', item.id);
+                                    newRow.innerHTML = 
+                                        '<div class="flex justify-between items-center">' +
+                                            '<div class="flex order-1 items-center min-w-0">' +
+                                                '<img class="shrink-0 p-2 rounded-4xl" src="' + (item.image || '/images/images.jpg') + '" alt="logo" width="90" height="90">' +
+                                                '<p class="flex items-center pl-5 truncate">' + (item.name || '') + '</p>' +
+                                            '</div>' +
+                                            '<div class="order-3 flex pr-10 items-center shrink-0 min-w-0">' +
+                                                '<div class="flex flex-col items-end mr-4">' +
+                                                    '<p class="text-[10px] font-bold uppercase tracking-wide text-gray-500 leading-none">Stock: ' + (item.stock || 0) + '</p>' +
+                                                '</div>' +
+                                                '<form action="/cart/remove/' + item.id + '" method="POST" class="inline">' +
+                                                    '<button class="mx-2 bg-gray-500 text-white rounded-2xl px-3 py-1.5 cursor-pointer" type="submit">Quitar</button>' +
+                                                '</form>' +
+                                                '<div class="mx-3 flex items-center border border-black rounded-2xl py-1">' +
+                                                    '<form action="/cart/decrement/' + item.id + '" method="POST" class="inline">' +
+                                                        '<button class="cursor-pointer mx-2" type="submit">-</button>' +
+                                                    '</form>' +
+                                                    '<p class="mx-2 cart-item-qty">' + item.cantidad + '</p>' +
+                                                    '<form action="/cart/increment/' + item.id + '" method="POST" class="inline">' +
+                                                        '<button class="cursor-pointer mx-2" type="submit">+</button>' +
+                                                    '</form>' +
+                                                '</div>' +
+                                                '<p class="text-3xl shrink-0 cart-item-subtotal">$ ' + item.subtotal.toLocaleString() + '</p>' +
+                                            '</div>' +
+                                        '</div>';
+                                    container.appendChild(newRow);
                                 }
                             });
                         }

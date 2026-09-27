@@ -15,5 +15,35 @@
     </main>
 
     <%- include('../partials/footer') %>
+
+    <!-- Indicador de conexión WebSocket -->
+    <div id="ws-status" style="position:fixed;bottom:12px;right:12px;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:#1e1e1e;color:#fff;font-size:13px;font-family:sans-serif;z-index:9999;opacity:0.85;">
+        <span id="ws-dot" style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></span>
+        <span id="ws-text">Desconectado</span>
+    </div>
+
+    <script>
+    (function () {
+        const dot  = document.getElementById('ws-dot');
+        const text = document.getElementById('ws-text');
+
+        function connect() {
+            const ws = new WebSocket('ws://' + location.host);
+
+            ws.onopen = function () {
+                dot.style.background  = '#22c55e';
+                text.textContent      = 'Conectado';
+            };
+
+            ws.onclose = function () {
+                dot.style.background  = '#ef4444';
+                text.textContent      = 'Desconectado';
+                setTimeout(connect, 3000);   // reintenta cada 3s
+            };
+        }
+
+        connect();
+    })();
+    </script>
 </body>
 </html>

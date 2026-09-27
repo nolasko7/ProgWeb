@@ -37,9 +37,48 @@
 
             ws.onmessage = function (event) {
                 var data = JSON.parse(event.data);
+
+                // Actualiza el contador del header
                 if (data.type === 'cart-update') {
                     var el = document.getElementById('cart-count');
                     if (el) el.textContent = data.count;
+                }
+
+                // Sincroniza la vista del carrito
+                if (data.type === 'cart-sync') {
+                    var container = document.getElementById('cart-items-container');
+
+                    if (container) {
+                        if (!data.items || data.items.length === 0) {
+                            container.innerHTML = '<div id="cart-empty-msg" class="my-8 rounded-2xl border border-dashed border-gray-300 bg-white p-6 text-center text-gray-600">Tu carrito está vacío.</div>';
+                        } else {
+                            var emptyMsg = document.getElementById('cart-empty-msg');
+                            if (emptyMsg) emptyMsg.remove();
+
+                            // Eliminar filas de productos que ya no están
+                            var rows = container.querySelectorAll('[data-product-id]');
+                            rows.forEach(function (row) {
+                                var id = Number(row.getAttribute('data-product-id'));
+                                var exists = data.items.some(function (item) { return item.id === id; });
+                                if (!exists) row.remove();
+                            });
+
+                            // Actualizar cantidades y subtotales
+                            data.items.forEach(function (item) {
+                                var row = container.querySelector('[data-product-id="' + item.id + '"]');
+                                if (row) {
+                                    var qty = row.querySelector('.cart-item-qty');
+                                    var sub = row.querySelector('.cart-item-subtotal');
+                                    if (qty) qty.textContent = item.cantidad;
+                                    if (sub) sub.textContent = '$ ' + item.subtotal.toLocaleString();
+                                }
+                            });
+                        }
+                    }
+
+                    // Actualizar el total general
+                    var totalEl = document.getElementById('cart-total');
+                    if (totalEl) totalEl.textContent = '$ ' + data.total.toLocaleString();
                 }
             };
 

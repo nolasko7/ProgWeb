@@ -1,5 +1,5 @@
 
-<div class="flex flex-col my-4 border border-white py-2 rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.15)] bg-white shrink-0">
+<div class="flex flex-col my-4 border border-white py-2 rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.15)] bg-white shrink-0" data-product-id="<%= elementosCarrito.objeto.id %>">
 
     <div class="flex justify-between items-center">
 
@@ -27,14 +27,14 @@
                 </form>
 
 
-                <p class="mx-2 "><%= elementosCarrito.cantidad %></p>
+                <p class="mx-2 cart-item-qty"><%= elementosCarrito.cantidad %></p>
 
 
                 <% if (elementosCarrito.objeto.stock === 0){%>
                     <form>
                         <button class="cursor-not-allowed mx-2" type="submit"></button>
                     </form>
-                <%} else{ %>
+                <% } else{ %>
 
                     <form action="/cart/increment/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
                         <button class="cursor-pointer mx-2" type="submit">+</button>
@@ -46,11 +46,9 @@
 
 
 
-
-
             </div>
 
-            <p class="text-3xl shrink-0">$ <%= elementosCarrito.total.toLocaleString() %> </p>
+            <p class="text-3xl shrink-0 cart-item-subtotal">$ <%= elementosCarrito.total.toLocaleString() %></p>
 
         </div>
 

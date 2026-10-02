@@ -21,9 +21,10 @@ function broadcastCart(session) {
         };
     }).filter(Boolean);
     const total = items.reduce((s, i) => s + i.subtotal, 0);
+    const count = contadorCarrito(session.carrito);
 
-    broadcast({ type: 'cart-update', count: contadorCarrito(session.carrito) });
-    broadcast({ type: 'cart-sync', items, total });
+    broadcast({ type: 'cart-update', count });
+    broadcast({ type: 'cart-sync', items, total, count });
 }
 
 function addToCart(req, res) {

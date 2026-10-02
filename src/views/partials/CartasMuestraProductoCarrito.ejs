@@ -12,7 +12,7 @@
         <div class="order-3 flex pr-10 items-center shrink-0 min-w-0">
 
             <div class="flex flex-col items-end mr-4">
-                <p class="text-[10px] font-bold uppercase tracking-wide text-gray-500 leading-none">Stock: <%= elementosCarrito.objeto.stock %></p>
+                <p class="cart-item-stock text-[10px] font-bold uppercase tracking-wide text-gray-500 leading-none">Stock: <%= elementosCarrito.objeto.stock %></p>
             </div>
 
             <form action="/cart/remove/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
@@ -20,32 +20,23 @@
             </form>
 
             <div class="mx-3 flex items-center border border-black rounded-2xl py-1">
-                
-                
                 <form action="/cart/decrement/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
                     <button class="cursor-pointer mx-2" type="submit">-</button>
                 </form>
 
-
                 <p class="mx-2 cart-item-qty"><%= elementosCarrito.cantidad %></p>
 
-
-                <% if (elementosCarrito.objeto.stock === 0){%>
-                    <form>
-                        <button class="cursor-not-allowed mx-2" type="submit"></button>
-                    </form>
-                <% } else{ %>
-
-                    <form action="/cart/increment/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
-                        <button class="cursor-pointer mx-2" type="submit">+</button>
-                    </form>
-                    
-
-                <% } %>
-
-
-
-
+                <span class="cart-item-increment-container">
+                    <% if (elementosCarrito.objeto.stock === 0){%>
+                        <form>
+                            <button class="cursor-not-allowed mx-2" type="button" disabled></button>
+                        </form>
+                    <% } else{ %>
+                        <form action="/cart/increment/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                            <button class="cursor-pointer mx-2" type="submit">+</button>
+                        </form>
+                    <% } %>
+                </span>
             </div>
 
             <p class="text-3xl shrink-0 cart-item-subtotal">$ <%= elementosCarrito.total.toLocaleString() %></p>

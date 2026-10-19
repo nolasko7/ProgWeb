@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof titulo !== 'undefined' ? titulo : 'MiEcommerce' %></title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body class="bg-[#E5E5E5] min-h-screen flex flex-col">
+    <%- include('../partials/header', { contador: typeof contador !== 'undefined' ? contador : 0 }) %>
+
+    <main class="flex-1">
+        <%- body %>
+    </main>
+
+    <%- include('../partials/footer') %>
+    <script>
+        const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        const socket = new WebSocket(`${wsProtocol}//${window.location.host}`);
+
+        const indicador = document.getElementById("estado-conexion");
+        const textoEstado = document.getElementById("estado-texto");
+        function mostrarEstado(conectado) {
+            indicador.dataset.estado = conectado ? "conectado" : "desconectado";
+            textoEstado.textContent = conectado ? "Conectado" : "Desconectado";
+        }
+
+        socket.addEventListener("open", () => {
+            console.log("[WS] Conectado al servidor");
+            mostrarEstado(true);
+        });
+
+        socket.addEventListener("close", () => {
+            console.log("[WS] Conexión cerrada");
+            mostrarEstado(false);
+        });
+
+        socket.addEventListener("error", (error) => {
+            console.error("[WS] Error de conexión:", error);
+            mostrarEstado(false);
+        });
+        socket.addEventListener("message", (event) => {
+            let data;
+            try {
+                data = JSON.parse(event.data);
+            } catch (error) {
+                console.warn("[ws] Mensaje sin estructura:", event.data);
+                return;
+            }
+
+            switch (data.type) {
+                case "connected":
+                    console.log("[ws]", data.payload.message);
+                    break;
+                case "carrito:actualizado": {
+                    const contador = document.getElementById("contador-carrito");
+                    if (contador) contador.textContent = data.payload.contador;
+                    // En cart/list se solicita la vista actualizada y se reemplaza sin recargar la página.
+                    if (window.location.pathname === "/cart/list" && window.actualizarVistaCarrito) {
+                        window.actualizarVistaCarrito();
+                    }
+                    break;
+                }
+                case "stock:actualizado": {
+                    // El stock es global: actualiza las tarjetas de todas las pestañas conectadas.
+                    data.payload.productos.forEach((producto) => {
+                        document.querySelectorAll("[data-stock-producto]").forEach((elemento) => {
+                            if (Number(elemento.dataset.stockProducto) === Number(producto.id)) {
+                                elemento.textContent = producto.stock;
+                            }
+                        });
+
+                        document.querySelectorAll("[data-boton-agregar]").forEach((boton) => {
+                            if (Number(boton.dataset.botonAgregar) !== Number(producto.id)) return;
+                            boton.disabled = Number(producto.stock) <= 0;
+
+                            const texto = document.querySelector(
+                                `[data-texto-boton-agregar="${producto.id}"]`
+                            );
+                            if (texto) {
+                                texto.textContent = Number(producto.stock) <= 0
+                                    ? "SIN STOCK"
+                                    : "Agregar al carrito";
+                            }
+                        });
+
+                        // También bloquea o habilita el botón + dentro de la vista del carrito.
+                        document.querySelectorAll("[data-boton-incrementar]").forEach((boton) => {
+                            if (Number(boton.dataset.botonIncrementar) === Number(producto.id)) {
+                                boton.disabled = Number(producto.stock) <= 0;
+                            }
+                        });
+                    });
+                    break;
+                }
+                case "error":
+                    console.error("[ws] Error del servidor:", data.payload.message);
+                    break;
+                default:
+                    console.warn("[ws] Evento desconocido:", data.type);
+            }
+        });
+    </script>
+</body>
+</html>

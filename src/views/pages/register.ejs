@@ -1,40 +1,52 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse</title>
-    <link rel="stylesheet" href="/css/output.css">
-</head>
-<body class="bg-[#F3F1F3] min-h-screen flex flex-col">
-  <%- include('../partials/header') %>
-  <main class="body-main-class relative flex-1">
 
-        
-        <div class="bg-[#44C79A] h-78 "></div>
+<% const erroresMap = errores || {}; const valores = datos || {}; %>
 
-        <div class="body-class-caja_GU -mt-60 relative z-10 mx-auto">
+<div class="bg-[#44C79A] h-78"></div>
 
-            <a href="/"><img src="/images/flechaHome.png"> </a><!-- Boton de para ir al inicio-->
+<div class="body-class-caja_GU -mt-60 relative z-10 mx-auto">
+    <a href="/"><img src="/images/flechaHome.png"></a>
 
-            <h1 class="my-4 text-3xl">¡Bienvenido!</h1>
+    <h1 class="my-4 text-3xl">¡Bienvenido!</h1>
 
-            <form action="/register" method="GET" class="flex flex-col items-start w-full">
-                <input class="body-class-caja_GU_elemento_a" type="text" name="Nombre" id="Nombre" placeholder="Ingrese su nombre" required>
-                <input class="body-class-caja_GU_elemento_a" type="email" name="Email" id="Email" placeholder="Ingresa tu email" required>
-                <input class="body-class-caja_GU_elemento_a" type="password" name="password" id="Contraseña" placeholder="Ingresa tu contraseña" required>
-                <button type="submit" class="my-3 w-full text-gray-50 bg-mist-600 text-center rounded-full py-2 cursor-pointer ">Registrarse</button>
-
-            </form>
-
+    <% if (erroresMap.general && erroresMap.general.length) { %>
+        <div class="w-full mb-4 text-red-500 text-sm">
+            <%= erroresMap.general.join(', ') %>
         </div>
+    <% } %>
 
-        <p class="text-center mt-10  pb-10">¿Tenes una cuenta existente?<a class="underline underline-offset-4"href="/login"> Inicia Sesión</a></p>
-        
-    </main>
+    <form action="/register" method="POST" class="flex flex-col items-start w-full" id="registerForm">
+        <input class="body-class-caja_GU_elemento_a" type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" value="<%= valores.nombre || '' %>">
+        <% if (erroresMap.nombre && erroresMap.nombre.length) { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-nombre"><%= erroresMap.nombre.join(', ') %></span>
+        <% } else { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-nombre"></span>
+        <% } %>
 
-    <%- include('../partials/footer') %>
-</body>
+        <input class="body-class-caja_GU_elemento_a" type="text" name="apellido" id="apellido" placeholder="Ingrese su apellido" value="<%= valores.apellido || '' %>">
+        <% if (erroresMap.apellido && erroresMap.apellido.length) { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-apellido"><%= erroresMap.apellido.join(', ') %></span>
+        <% } else { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-apellido"></span>
+        <% } %>
 
-</html>
+        <input class="body-class-caja_GU_elemento_a" type="email" name="email" id="email" placeholder="Ingresa tu email" value="<%= valores.email || '' %>">
+        <% if (erroresMap.email && erroresMap.email.length) { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-email"><%= erroresMap.email.join(', ') %></span>
+        <% } else { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-email"></span>
+        <% } %>
+
+        <input class="body-class-caja_GU_elemento_a" type="password" name="password" id="password" placeholder="Ingresa tu contraseña" value="<%= valores.password || '' %>">
+        <% if (erroresMap.password && erroresMap.password.length) { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-password"><%= erroresMap.password.join(', ') %></span>
+        <% } else { %>
+            <span class="error-msg text-red-500 text-sm mt-1 block" id="error-password"></span>
+        <% } %>
+
+        <button type="submit" class="my-3 w-full text-gray-50 bg-mist-600 text-center rounded-full py-2 cursor-pointer transition-colors duration-300 hover:bg-mist-900">Registrarse</button>
+    </form>
+</div>
+
+<p class="text-center mt-10 pb-10">¿Tenes una cuenta existente?<a class="underline underline-offset-4" href="/login"> Inicia Sesión</a></p>
+
 

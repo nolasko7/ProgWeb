@@ -1,9 +1,9 @@
-<div class="bg-white border border-gray-300 rounded-2xl p-3 shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
+<div data-tarjeta-producto="<%= producto.id %>" class="bg-white border border-gray-300 rounded-2xl p-3 shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col justify-between">
     <div>
         <div class="relative aspect-square w-full overflow-hidden rounded-xl bg-gray-50 border-4 border-white shadow-md mb-4 group">
             <a href="/product/<%= producto.id %>">
                 <img 
-                src="<%= producto.image || '/images/images.jpg' %>" 
+                src="<%= producto.images_main || producto.image || '/images/images.jpg' %>" 
                 alt="<%= producto.name %>" 
                 class="w-full h-full object-cover" 
                 loading="lazy"
@@ -20,19 +20,33 @@
             <p class="text-2xl font-black text-gray-900">
                 <%= producto.price %>
             </p>
-            <p class="text-sm font-black text-gray-500 mb-4"><%= producto.puntos %> puntos</p>
+            <p class="text-sm font-black text-gray-500 mb-2"><%= producto.puntos %> puntos</p>
+            <p class="text-xs font-bold uppercase tracking-wide text-black mb-4">
+                Stock: <span data-stock-producto="<%= producto.id %>"><%= producto.stock %></span>
+            </p>
         </div>
     </div>
 
- 
     <form action="/cart/add" method="POST">
         <input type="hidden" name="productId" value="<%= producto.id %>">
-        <button 
-            type="submit"
-            class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 rounded-xl transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
-        >
+        <button type="submit" data-boton-agregar="<%= producto.id %>"
+            <%= producto.stock === 0 ? 'disabled' : '' %>
+            class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 rounded-xl transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60">
             <img src="/images/Carrito.svg" class="h-5 w-5" alt="Carrito">
-            <span>Agregar al carrito</span>
+            <span data-texto-boton-agregar="<%= producto.id %>"><%= producto.stock === 0 ? 'SIN STOCK' : 'Agregar al carrito' %></span>
         </button>
     </form>
+
+
 </div>
+
+<script>
+
+
+
+
+
+
+
+
+</script>

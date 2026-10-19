@@ -4,21 +4,46 @@
     <div class="flex justify-between items-center">
 
         <div class="flex order-1 items-center min-w-0 ">
-            <img class="shrink-0 p-2 rounded-4xl" src=" <%= elementosCarrito.objeto.image %>" alt="logo" width="90" height="90">
+            <img class="shrink-0 p-2 rounded-4xl" src="<%= elementosCarrito.objeto.images_main || elementosCarrito.objeto.image || '/images/images.jpg' %>" alt="logo" width="90" height="90">
             <p class="flex items-center pl-5 truncate"><%= elementosCarrito.objeto.name  %> </p>
+
         </div>
 
         <div class="order-3 flex pr-10 items-center shrink-0 min-w-0">
 
-            <button class="mx-2 bg-gray-500 text-white rounded-2xl px-3 py-1.5 cursor-pointer" type="button">Quitar</button>
-
-            <div class="mx-3 flex items-center border border-black rounded-2xl py-1">
-                <button class="cursor-pointer mx-2" type="button">-</button>
-                <p class="mx-2 "> <%=elementosCarrito.quantity %> </p>
-                <button class="cursor-pointer mx-2" type="button">+</button>
+            <div class="flex flex-col items-end mr-4">
+                <p class="text-[10px] font-bold uppercase tracking-wide text-gray-500 leading-none">Stock: <span data-stock-producto="<%= elementosCarrito.objeto.id %>"><%= elementosCarrito.objeto.stock %></span></p>
             </div>
 
-            <p class="text-3xl shrink-0">$100</p>
+            <form action="/cart/remove/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                <button class="mx-2 bg-gray-500 text-white rounded-2xl px-3 py-1.5 cursor-pointer" type="submit">Quitar</button>
+            </form>
+
+            <div class="mx-3 flex items-center border border-black rounded-2xl py-1">
+                
+                
+                <form action="/cart/decrement/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                    <button class="cursor-pointer mx-2" type="submit">-</button>
+                </form>
+
+
+                <p class="mx-2 "><%= elementosCarrito.cantidad %></p>
+
+
+                <form action="/cart/increment/<%= elementosCarrito.objeto.id %>" method="POST" class="inline">
+                    <button data-boton-incrementar="<%= elementosCarrito.objeto.id %>"
+                        <%= elementosCarrito.objeto.stock === 0 ? 'disabled' : '' %>
+                        class="cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 mx-2" type="submit">+</button>
+                </form>
+
+
+
+
+
+
+            </div>
+
+            <p class="text-3xl shrink-0">$ <%= elementosCarrito.total.toLocaleString() %> </p>
 
         </div>
 

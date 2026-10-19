@@ -11,22 +11,47 @@
                 </h2>
             </a>
 
+
+
+            <div class="flex items-center justify-center ">
+
+
+                <form action="/search" method="GET">
+                    
+                    <input  type="search" name="query" required  placeholder="Buscar un producto"  class="w-xl border border-gray-500 rounded-xl  px-2 h-9 placeholder-gray-400" >
+
+                    <button type="submit" class="my-3 text-gray-50 bg-mist-600 text-center rounded-full py-1 px-3 cursor-pointer transition-colors duration-300 hover:bg-mist-900">Buscar</button>
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+
             <nav class="flex items-center gap-2 sm:gap-3">
-                
-                
-                <!--<a href="/cart"
-                    class="p-2 text-gray-700 hover:text-emerald-600 transition-colors rounded-xl hover:bg-gray-100 flex items-center gap-1.5 text-sm font-medium"
+                <div id="estado-conexion" data-estado="desconectado"
+                    class="group flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium
+                        bg-red-50 text-red-700
+                        data-[estado=conectado]:bg-green-50 data-[estado=conectado]:text-green-700">
+                    <span class="h-2 w-2 rounded-full bg-red-500
+                    group-data-[estado=conectado]:bg-green-600
+                    group-data-[estado=conectado]:animate-pulse"></span>
+                    <span id="estado-texto" class="hidden sm:inline">Desconectado</span>
+                </div>
+                <div>
+                <a href="/cart/list"
+                    class="p-2 text-gray-700 hover:text-white transition-colors rounded-xl hover:bg-emerald-800 flex items-center gap-1.5 text-sm font-medium px-10"
                     title="Ver carrito">
                     <img src="/images/Carrito.svg" alt="Carrito" class="w-5 h-5 color">
                     <span class="hidden sm:inline">Carrito</span>
+                    <span id="contador-carrito"><%= typeof contador !== 'undefined' ? contador : 0 %></span>
                 </a>
-                
-                
-                    La comente porque lo vamos a necesitar pero hay que ponerle una logica para que solo se vea cuando el usuario este logueado, sino se ve feo y no tiene sentido.
-                <-->
-
-
-
+                </div>
+    
                 <a href="/login"
                     class="px-3.5 py-1.5 text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors">
                     Ingresar

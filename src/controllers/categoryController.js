@@ -1,5 +1,5 @@
-const { contadorCarrito } = require('../models/carrtio');
-const productsService = require('../services/productsService');
+const { contadorCarrito } = require('../models/cartModel');
+const productsService = require('../services/productService');
 
 function categories(req, res) {
     const categoryName = req.params.categoryName;

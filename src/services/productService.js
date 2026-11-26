@@ -1,5 +1,5 @@
-const productsModel = require('../models/products');
-const obtenerCategoriaName = require('../models/category');
+const productsModel = require('../models/productModel');
+const obtenerCategoriaName = require('../models/categoryModel');
 
 function getRandomProducts(excludedId) {
     return productsModel.productosRandom(excludedId);

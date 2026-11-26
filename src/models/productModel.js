@@ -1,5 +1,5 @@
 
-    const database = require("../db/index");
+    const database = require("../db/connection");
 
 
 function productosRandom(id){

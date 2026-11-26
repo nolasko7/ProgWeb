@@ -2,134 +2,54 @@
 // ---------------------------- LIBRERIAS --------------------------------------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-const express = require('express')
+const express = require('express');
 const http = require('http');
+const path = require("path");
+const expressLayouts = require('express-ejs-layouts');
+
+require("./src/db/init"); // crea las tablas si no existen
+
+const session = require('./src/config/session');
+const { initCart } = require('./src/middlewares/cart');
+const { notFound, serverError } = require('./src/middlewares/errorHandlers');
+const routes = require('./src/routes');
 const ws = require('./src/websocket');
-const routerCategory = require('./src/routes/routesCategory');
-const routerProduct = require('./src/routes/routesProduct');
-const productsService = require('./src/services/productsService');
-const routerCart = require('./src/routes/routesCart');
-const session = require('express-session');
-const {contadorCarrito} = require('./src/models/carrtio')
+
 const app = express();
-const routerRegister = require('./src/routes/routerRegister');
-const expressLayouts  =  require ( 'express-ejs-layouts' ) ;
-const search = require('./src/routes/search');
-require("./src/db/schema/Iindex");
-const getCategorias = require("./src/models/category");
-const categories = getCategorias.getCategorias();
+const PORT = process.env.PORT || 3000;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ------------------------        Configuracion de layouts             --------------------------------------//
+// ------------------------        Configuracion de vistas y layouts    --------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.set("view engine", "ejs");
+app.set("view engine", "ejs"); //le dice a Express que use EJS para renderizar
+app.set("views", path.join(__dirname, "src/views")); //le dice dónde buscar los archivos .ejs.
 app.use(expressLayouts);
 app.set("layout", "pages/layouts");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ------------------------ Configuracion para poder utiliar el carrito --------------------------------------//
+// ----------------------------------  Middlewares  ----------------------------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.use(session({
-    secret: process.env.SESSION_SECRET || "desarrollo-secret",  //Esto es la firma que valida las cookies 
-    resave: false, //Esto hace que la sesion no se vuelva a reescribir si alguien la toco
-    saveUninitialized: false, //no crea / manda cookie hasta que mguardemos algo de verdad (?(?( preguntar bien para que funciona)))
-    cookie: {
-        httpOnly : true
-        //aca puede ir un parametro para que la sesion dure aun si el navegador se cierra "maxAge"
-
-    }
-}));
-
-app.use((req , res , next) => {
-    if (!req.session) {
-        return next();
-    }
-    if (!req.session.carrito) {
-        /** @type {objetocarrito[]} */
-        req.session.carrito = [];
-    }
-    res.locals.contador = contadorCarrito(req.session.carrito);
-    next();
-});
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ----------------------------------Configuracion del servidor ----------------------------------------------//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const path = require("path");
-const PORT = process.env.PORT || 3000;
-app.use(express.urlencoded({ extended: true })); //middleware que parsea el body de formularios HTML (<form method="POST">). Sin esto, req.body sería undefined
-app.set("view engine", "ejs"); //le dice a Express que use EJS para renderizar
+app.use(session);
+app.use(initCart);
 app.use(express.static("public"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.set("views", path.join(__dirname, "src/views")); //le dice dónde buscar los archivos .ejs.
+app.use(express.urlencoded({ extended: true })); //parsea el body de formularios HTML (<form method="POST">). Sin esto, req.body sería undefined
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ----------------------------  app.use PARA PODER IR A LAS DISTNTAS RUTAS  ---------------------------------//
+// ----------------------------------  Rutas (ver src/routes/index.js)  --------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+app.use(routes);
 
-app.get("/", (req, res) => {
+app.use(serverError);
+app.use(notFound);
 
-    const productos = productsService.getRandomProducts();
-    const flash = req.session.flash;
-    req.session.flash = null;
-    const productosMasLlevados = productsService.getMostRequestedProducts();
-    const contador = contadorCarrito(req.session.carrito);
-    res.render("pages/index", {
-  titulo: "Inicio",
-  categories,
-  productos,
-  productosMasLlevados,
-  flash,
-  contador
-});
-});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ----------------------------------  LISTEN – servidor HTTP + WebSocket  -----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.use("/search" , search);
-
-app.use("/product", routerProduct);
-
-app.use("/cart", routerCart);
-
-app.get("/login", (req, res) => {
-    res.render("pages/login", { titulo: "Login" });
-});
-
-app.use("/register", routerRegister);
-
-
-app.get("/checkout", (req, res, next) => {
-    try {
-        res.render("pages/checkout", { titulo: "Checkout" });
-    } catch (err) {
-        next(err);
-    }
-});
-
-app.use("/category", routerCategory);
-
-
-
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(500).render('pages/500');
-});
-
-app.use((req, res) => {
-    const contador = contadorCarrito(req.session.carrito);
-    res.status(404).render('pages/error', {
-        code: 404,
-        message: 'Página no encontrada',
-        categories: categories,
-        contador
-    });
-})
-//LISTEN – servidor HTTP + WebSocket
 const server = http.createServer(app);
 ws.init(server);
 server.listen(PORT, () => console.log("Server is Ready! ☝️🤓"));

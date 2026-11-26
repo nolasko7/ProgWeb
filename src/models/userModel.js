@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require("../db/connection");
 
 function registrarUsuario(nombre, apellido, email, password) {
     const existente = db.prepare("SELECT id FROM users WHERE email = ?").get(email);

@@ -1,7 +1,7 @@
-const productsService = require('../services/productsService');
+const productsService = require('../services/productService');
 const cartService = require('../services/cartService');
-const { contadorCarrito } = require('../models/carrtio');
-const { stockDown } = require('../models/products');
+const { contadorCarrito } = require('../models/cartModel');
+const { stockDown } = require('../models/productModel');
 const { broadcast } = require('../websocket');
 
 // Arma y envía el estado completo del carrito por WS

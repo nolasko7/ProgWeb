@@ -1,5 +1,5 @@
 
-const { registrarUsuario } = require('./Usuarios');
+const { registrarUsuario } = require('../services/userService');
 const { validarFormulario, renderRegister } = require("../utils/validacion");
 
 function metodoPost(req, res) {

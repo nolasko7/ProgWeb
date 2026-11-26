@@ -1,4 +1,4 @@
-const {stockUp , stockDown , stockReload} = require('../models/products');
+const {stockUp , stockDown , stockReload} = require('../models/productModel');
 
 
 function ensureCart(session) {

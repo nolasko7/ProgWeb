@@ -1,7 +1,7 @@
-const { getCategorias } = require('../models/category');
+const { getCategorias } = require('../models/categoryModel');
 
-const { contadorCarrito } = require('../models/carrtio');
-const productsService = require('../services/productsService');
+const { contadorCarrito } = require('../models/cartModel');
+const productsService = require('../services/productService');
 
 function normalizeId(value) {
     if (value === undefined || value === null || value === '') {

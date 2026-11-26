@@ -172,4 +172,38 @@ function stockReload(id , cantidad) {
 
 
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos};
+// ---------------------- ABM (usado por la API) ----------------------
+
+function crearProducto(producto) {
+    const resultado = database.prepare(`
+        INSERT INTO products (id_Category, name, price, images_main, images_2, images_3, images_4, description, stock, maspedido)
+        VALUES (@id_Category, @name, @price, @images_main, @images_2, @images_3, @images_4, @description, @stock, @maspedido)
+    `).run(producto);
+
+    return getProductoPorId(resultado.lastInsertRowid);
+}
+
+function actualizarProducto(id, producto) {
+    database.prepare(`
+        UPDATE products SET
+            id_Category = @id_Category,
+            name = @name,
+            price = @price,
+            images_main = @images_main,
+            images_2 = @images_2,
+            images_3 = @images_3,
+            images_4 = @images_4,
+            description = @description,
+            stock = @stock,
+            maspedido = @maspedido
+        WHERE id = @id
+    `).run({ ...producto, id });
+
+    return getProductoPorId(id);
+}
+
+function eliminarProducto(id) {
+    return database.prepare("DELETE FROM products WHERE id = ?").run(id);
+}
+
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos, crearProducto, actualizarProducto, eliminarProducto };

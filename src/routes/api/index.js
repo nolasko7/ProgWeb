@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { apiNotFound, apiServerError } = require('../../middlewares/apiErrorHandlers');
+const productsApiRoutes = require('./productsApiRoutes');
 
 const router = express.Router();
 
@@ -13,6 +14,8 @@ router.use(express.json());
 router.get('/', (req, res) => {
     res.json({ status: 'ok', message: 'API de Mi Ecommerce' });
 });
+
+router.use('/products', productsApiRoutes);
 
 // Errores de la API: responden JSON en vez de renderizar vistas
 router.use(apiNotFound);

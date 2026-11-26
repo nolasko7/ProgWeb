@@ -2,20 +2,7 @@ const { getCategorias } = require('../models/categoryModel');
 
 const { contadorCarrito } = require('../models/cartModel');
 const productsService = require('../services/productService');
-
-function normalizeId(value) {
-    if (value === undefined || value === null || value === '') {
-        return null;
-    }
-
-    const id = Number(value);
-
-    if (!Number.isInteger(id) || id <= 0) {
-        return null;
-    }
-
-    return id;
-}
+const { normalizeId } = require('../utils/normalizeId');
 
 function obtenerProducto(req, res) {
     const categories = getCategorias();

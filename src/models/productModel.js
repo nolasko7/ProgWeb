@@ -202,8 +202,12 @@ function actualizarProducto(id, producto) {
     return getProductoPorId(id);
 }
 
+function contarProductos() {
+    return database.prepare("SELECT COUNT(*) AS total FROM products").get().total;
+}
+
 function eliminarProducto(id) {
     return database.prepare("DELETE FROM products WHERE id = ?").run(id);
 }
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos, crearProducto, actualizarProducto, eliminarProducto };
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos, crearProducto, actualizarProducto, eliminarProducto, contarProductos };

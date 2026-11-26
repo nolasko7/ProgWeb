@@ -20,6 +20,10 @@ function getCategoriaPorNombre(name) {
     return database.prepare("SELECT * FROM categories WHERE LOWER(name) = LOWER(?)").get(name);
 }
 
+function contarCategorias() {
+    return database.prepare("SELECT COUNT(*) AS total FROM categories").get().total;
+}
+
 function contarProductosDeCategoria(id) {
     return database.prepare("SELECT COUNT(*) AS total FROM products WHERE id_Category = ?").get(id).total;
 }
@@ -50,6 +54,7 @@ module.exports = {
     getCategoriaPorId,
     getCategoriaPorNombre,
     contarProductosDeCategoria,
+    contarCategorias,
     crearCategoria,
     actualizarCategoria,
     eliminarCategoria

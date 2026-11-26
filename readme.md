@@ -30,3 +30,37 @@ src/
 
 Regla de capas: `routes → controllers → services → models → db`.
 Los controllers no tocan la base directo; los models no saben de req/res.
+
+## API REST (Sprint 5)
+
+Todas las rutas están bajo `/api`, responden JSON y tienen CORS habilitado (`src/routes/api/`).
+Los controllers de la API (`src/controllers/api/`) usan los mismos services que las vistas EJS: no hay SQL en los controllers.
+
+| Método | Ruta | Descripción | Respuesta |
+|---|---|---|---|
+| GET | `/api/products` | Listado de productos | 200 |
+| GET | `/api/products/:id` | Detalle de un producto | 200 / 400 / 404 |
+| POST | `/api/products` | Crea un producto | 201 / 400 |
+| PUT | `/api/products/:id` | Modifica un producto (se pueden mandar solo los campos a cambiar) | 200 / 400 / 404 |
+| DELETE | `/api/products/:id` | Elimina un producto | 200 / 404 |
+| GET | `/api/categories` | Listado de categorías | 200 |
+| GET | `/api/categories/:id` | Detalle de una categoría | 200 / 400 / 404 |
+| POST | `/api/categories` | Crea una categoría | 201 / 400 |
+| PUT | `/api/categories/:id` | Modifica una categoría | 200 / 400 / 404 |
+| DELETE | `/api/categories/:id` | Elimina una categoría (no se puede si tiene productos) | 200 / 404 / 409 |
+| GET | `/api/stats` | `{ "totalProducts": X, "totalCategories": Y }` | 200 |
+
+Ejemplo de body para crear un producto:
+
+```json
+{
+  "name": "Mate de calabaza",
+  "price": 12000,
+  "id_Category": 5,
+  "images_main": "/images/Hogar.png",
+  "description": "Mate artesanal",
+  "stock": 10
+}
+```
+
+Los errores devuelven `{ "error": "mensaje" }` (y `detalles` con la lista de problemas si son errores de validación).

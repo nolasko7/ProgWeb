@@ -13,6 +13,7 @@ const session = require('./src/config/session');
 const { initCart } = require('./src/middlewares/cart');
 const { notFound, serverError } = require('./src/middlewares/errorHandlers');
 const routes = require('./src/routes');
+const apiRoutes = require('./src/routes/api');
 const ws = require('./src/websocket');
 
 const app = express();
@@ -31,11 +32,16 @@ app.set("layout", "pages/layouts");
 // ----------------------------------  Middlewares  ----------------------------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+app.use(express.static("public"));
+
+// API REST (JSON) bajo /api. Va antes de la sesión para que sea stateless (no crea cookies ni carrito).
+// Adentro tiene CORS, express.json() y errores en formato JSON (ver src/routes/api/index.js)
+app.use("/api", apiRoutes);
+
+app.use(express.json()); //parsea el body en formato JSON
+app.use(express.urlencoded({ extended: true })); //parsea el body de formularios HTML (<form method="POST">). Sin esto, req.body sería undefined
 app.use(session);
 app.use(initCart);
-app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); //parsea el body de formularios HTML (<form method="POST">). Sin esto, req.body sería undefined
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ----------------------------------  Rutas (ver src/routes/index.js)  --------------------------------------//

@@ -24,4 +24,9 @@ function existeEmail(email) {
     return Boolean(db.prepare("SELECT 1 FROM users WHERE LOWER(email) = LOWER(?)").get(email));
 }
 
-module.exports = { crearUsuario, getUsuarioPorId, getUsuarioConPasswordPorEmail, existeEmail };
+function actualizarRol(id, role) {
+    db.prepare("UPDATE users SET role = ? WHERE id = ?").run(role, id);
+    return getUsuarioPorId(id);
+}
+
+module.exports = { crearUsuario, getUsuarioPorId, getUsuarioConPasswordPorEmail, existeEmail, actualizarRol };

@@ -29,4 +29,18 @@ function verifyToken(req, res, next) {
     }
 }
 
-module.exports = { verifyToken };
+/**
+ * Middleware de autorización: solo deja pasar a usuarios con rol admin.
+ * Se usa DESPUÉS de verifyToken (necesita req.user).
+ */
+function requireAdmin(req, res, next) {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Necesitás iniciar sesión' });
+    }
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: 'No tenés permisos para realizar esta operación' });
+    }
+    next();
+}
+
+module.exports = { verifyToken, requireAdmin };

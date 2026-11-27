@@ -12,6 +12,7 @@ require("./src/db/init"); // crea las tablas si no existen
 
 const session = require('./src/config/session');
 const { initCart } = require('./src/middlewares/cart');
+const { cargarUsuario } = require('./src/middlewares/sessionAuth');
 const { notFound, serverError } = require('./src/middlewares/errorHandlers');
 const routes = require('./src/routes');
 const apiRoutes = require('./src/routes/api');
@@ -43,6 +44,7 @@ app.use(express.json()); //parsea el body en formato JSON
 app.use(express.urlencoded({ extended: true })); //parsea el body de formularios HTML (<form method="POST">). Sin esto, req.body sería undefined
 app.use(session);
 app.use(initCart);
+app.use(cargarUsuario); // deja el usuario logueado en res.locals.user para las vistas
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ----------------------------------  Rutas (ver src/routes/index.js)  --------------------------------------//

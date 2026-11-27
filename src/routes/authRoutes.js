@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const {metodoGet , metodoPost} = require('../controllers/authController');
+const auth = require('../controllers/authController');
+const { requireLogin, soloInvitados } = require('../middlewares/sessionAuth');
 
-router.get('/' , metodoGet );
+// Login y registro: solo para quienes no iniciaron sesión
+router.get('/register', soloInvitados, auth.metodoGet);
+router.post('/register', soloInvitados, auth.metodoPost);
+router.get('/login', soloInvitados, auth.loginGet);
+router.post('/login', soloInvitados, auth.loginPost);
 
-router.post('/' , metodoPost);
+// Cerrar sesión: solo usuarios logueados
+router.post('/logout', requireLogin, auth.logout);
 
 module.exports = router;
-
-
-

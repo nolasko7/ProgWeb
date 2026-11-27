@@ -3,8 +3,20 @@
     npm install
     cp .env.example .env   # y completar los valores (claves secretas)
     npm run crear-admin    # crea el usuario administrador con los datos del .env
+    npm run seed-users     # (opcional) usuarios de prueba, ya vienen cargados en database.db
     npm run dev            # servidor en http://localhost:3000
     npm run tailwind       # compila el CSS
+
+## Usuarios de prueba
+
+Ya están cargados en `database.db` (si se borran, se recrean con `npm run seed-users`).
+Sirven para entrar a la tienda y al dashboard de React. **Solo para desarrollo.**
+
+| Email | Contraseña | Rol |
+|---|---|---|
+| dashboard@miecommerce.com | admin123 | admin |
+| vendedor@miecommerce.com | admin123 | admin |
+| cliente@miecommerce.com | cliente123 | consumer (no entra al dashboard) |
 
 ## Estructura
 

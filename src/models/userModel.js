@@ -1,33 +1,27 @@
 const db = require("../db/connection");
 
-function registrarUsuario(nombre, apellido, email, password) {
-    const existente = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
-    if (existente) {
-        return {
-            exito: false,
-            errores: [{ campo: "email", mensaje: "El email ya está registrado" }]
-        };
-    }
+// Columnas públicas: nunca devolvemos el hash de la contraseña fuera del model/service
+const COLUMNAS_PUBLICAS = "id, name, email, role, created_at";
 
-    try {
-        const name = `${nombre} ${apellido}`;
-        // TODO: reemplazar por bcrypt.hash(password, 10) cuando corresponda
-        const password_hash = password;
+function crearUsuario({ name, email, password_hash, role }) {
+    const resultado = db.prepare(
+        "INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)"
+    ).run(name, email, password_hash, role);
 
-        const stmt = db.prepare(
-            "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)"
-        );
-        stmt.run(name, email, password_hash);
-
-        return { exito: true, mensaje: "Registro exitoso" };
-
-    } catch (error) {
-        console.error(error);
-        return {
-            exito: false,
-            errores: [{ campo: "general", mensaje: "Error interno al registrar el usuario" }]
-        };
-    }
+    return getUsuarioPorId(resultado.lastInsertRowid);
 }
 
-module.exports = { registrarUsuario };
+function getUsuarioPorId(id) {
+    return db.prepare(`SELECT ${COLUMNAS_PUBLICAS} FROM users WHERE id = ?`).get(id);
+}
+
+// Incluye password_hash: solo se usa para verificar la contraseña en el login
+function getUsuarioConPasswordPorEmail(email) {
+    return db.prepare("SELECT * FROM users WHERE LOWER(email) = LOWER(?)").get(email);
+}
+
+function existeEmail(email) {
+    return Boolean(db.prepare("SELECT 1 FROM users WHERE LOWER(email) = LOWER(?)").get(email));
+}
+
+module.exports = { crearUsuario, getUsuarioPorId, getUsuarioConPasswordPorEmail, existeEmail };

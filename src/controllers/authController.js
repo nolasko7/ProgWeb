@@ -1,27 +1,26 @@
+const userService = require('../services/userService');
+const { renderRegister } = require("../utils/validacion");
 
-const { registrarUsuario } = require('../services/userService');
-const { validarFormulario, renderRegister } = require("../utils/validacion");
+// POST /register
+async function metodoPost(req, res) {
+    const datos = {
+        nombre: req.body.nombre ?? req.body.Nombre,
+        apellido: req.body.apellido ?? req.body.Apellido,
+        email: req.body.email ?? req.body.Email,
+        password: req.body.password
+    };
 
-function metodoPost(req, res) {
-    const nombre = (req.body.nombre ?? req.body.Nombre ?? "").trim();
-    const apellido = (req.body.apellido ?? req.body.Apellido ?? "").trim();
-    const email = (req.body.email ?? req.body.Email ?? "").trim();
-    const password = (req.body.password ?? "").trim();
-    const datos = { nombre, apellido, email, password };
-
-    const errores = validarFormulario(datos);
-    if (errores.length > 0) {
-        return renderRegister(res, datos, errores);
-    }
-
-    const resultado = registrarUsuario(nombre, apellido, email, password);
-    if (resultado.exito) {
+    const resultado = await userService.registrarUsuario(datos);
+    if (resultado.usuario) {
+        req.session.flash = 'Te registraste correctamente. Ya podés iniciar sesión.';
         return res.redirect("/login");
     }
 
-    return renderRegister(res, datos, resultado.errores || [{ campo: "general", mensaje: "Error al registrar el usuario." }]);
+    // No devolvemos la contraseña a la vista
+    return renderRegister(res, { ...datos, password: '' }, resultado.errores);
 }
 
+// GET /register
 function metodoGet(req, res) {
     res.render("pages/register", { titulo: "Registro", datos: {}, errores: {} });
 }

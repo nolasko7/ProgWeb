@@ -2,6 +2,7 @@
 // ---------------------------- LIBRERIAS --------------------------------------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+require('./src/config/env'); // carga y valida el .env antes que todo
 const express = require('express');
 const http = require('http');
 const path = require("path");
@@ -17,7 +18,7 @@ const apiRoutes = require('./src/routes/api');
 const ws = require('./src/websocket');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const { PORT } = require('./src/config/env');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ------------------------        Configuracion de vistas y layouts    --------------------------------------//

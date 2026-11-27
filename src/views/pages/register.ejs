@@ -36,7 +36,7 @@
             <span class="error-msg text-red-500 text-sm mt-1 block" id="error-email"></span>
         <% } %>
 
-        <input class="body-class-caja_GU_elemento_a" type="password" name="password" id="password" placeholder="Ingresa tu contraseña" value="<%= valores.password || '' %>">
+        <input class="body-class-caja_GU_elemento_a" type="password" name="password" id="password" placeholder="Ingresa tu contraseña">
         <% if (erroresMap.password && erroresMap.password.length) { %>
             <span class="error-msg text-red-500 text-sm mt-1 block" id="error-password"><%= erroresMap.password.join(', ') %></span>
         <% } else { %>

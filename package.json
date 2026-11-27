@@ -19,7 +19,8 @@
     "dev": "nodemon app.js",
     "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch",
     "crear-admin": "node src/db/seed/createAdmin.js",
-    "seed-users": "node src/db/seed/users.js"
+    "seed-users": "node src/db/seed/users.js",
+    "seed-orders": "node src/db/seed/orders.js"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",

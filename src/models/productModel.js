@@ -207,8 +207,13 @@ function contarProductos() {
     return database.prepare("SELECT COUNT(*) AS total FROM products").get().total;
 }
 
+// Productos con menos stock (para saber qué reponer)
+function getProductosConMenosStock(limite) {
+    return database.prepare("SELECT id, name, images_main, stock FROM products ORDER BY stock ASC, name LIMIT ?").all(limite);
+}
+
 function eliminarProducto(id) {
     return database.prepare("DELETE FROM products WHERE id = ?").run(id);
 }
 
-module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos, crearProducto, actualizarProducto, eliminarProducto, contarProductos };
+module.exports = { productosRandom, productosMasLlevados, getCategoriaProductos, getTodosProductos, getProductoPorId, productosRandomDelamismaCategoria , stockDown , stockUp , stockReload , ordenarProductos, crearProducto, actualizarProducto, eliminarProducto, contarProductos, getProductosConMenosStock };

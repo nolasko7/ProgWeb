@@ -4,6 +4,7 @@
     cp .env.example .env   # y completar los valores (claves secretas)
     npm run crear-admin    # crea el usuario administrador con los datos del .env
     npm run seed-users     # (opcional) usuarios de prueba, ya vienen cargados en database.db
+    npm run seed-orders    # (opcional) 15 pedidos de prueba para las métricas de ventas, ya vienen cargados
     npm run dev            # servidor en http://localhost:3000
     npm run tailwind       # compila el CSS
 
@@ -17,6 +18,10 @@ Sirven para entrar a la tienda y al dashboard de React. **Solo para desarrollo.*
 | dashboard@miecommerce.com | admin123 | admin |
 | vendedor@miecommerce.com | admin123 | admin |
 | cliente@miecommerce.com | cliente123 | consumer (no entra al dashboard) |
+| maria@miecommerce.com | cliente123 | consumer |
+| juan@miecommerce.com | cliente123 | consumer |
+
+También hay 15 pedidos de prueba de los clientes (`npm run seed-orders` si se borran).
 
 ## Estructura
 
@@ -104,6 +109,9 @@ Se manda el token en la cabecera `Authorization: Bearer <token>`.
 | `GET /api/auth/me` | `verifyToken` | 401 | 200 | 200 |
 | `POST/PUT/DELETE /api/products` | `verifyToken` + `requireAdmin` | 401 | 403 | 200 / 201 |
 | `POST/PUT/DELETE /api/categories` | `verifyToken` + `requireAdmin` | 401 | 403 | 200 / 201 |
+| `GET /api/stats/sales` | `verifyToken` + `requireAdmin` | 401 | 403 | 200 |
+
+`GET /api/stats/sales` devuelve las métricas de ventas del dashboard: `resumen` (total vendido, pedidos, ticket promedio, unidades), `masVendidos`, `menosStock`, `ventasPorCategoria`, `pedidosPorEstado` y `ultimosPedidos`.
 
 Los `GET` de productos, categorías y `/api/stats` siguen siendo públicos.
 

@@ -5,4 +5,9 @@ function summary(req, res) {
     res.status(200).json(statsService.getStats());
 }
 
-module.exports = { summary };
+// GET /api/stats/sales (solo admin)
+function sales(req, res) {
+    res.status(200).json(statsService.getSalesStats());
+}
+
+module.exports = { summary, sales };

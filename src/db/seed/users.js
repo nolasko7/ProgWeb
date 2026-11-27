@@ -12,6 +12,8 @@ const usuariosDePrueba = [
     { name: 'Vendedor', email: 'vendedor@miecommerce.com', password: 'admin123', role: 'admin' },
     // consumer: sirve para probar que el dashboard rechaza a quien no es admin
     { name: 'Cliente', email: 'cliente@miecommerce.com', password: 'cliente123', role: 'consumer' },
+    { name: 'María Gómez', email: 'maria@miecommerce.com', password: 'cliente123', role: 'consumer' },
+    { name: 'Juan Pérez', email: 'juan@miecommerce.com', password: 'cliente123', role: 'consumer' },
 ];
 
 (async () => {

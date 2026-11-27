@@ -1,8 +1,10 @@
 # ProgWeb – E-commerce
 
     npm install
-    npm run dev        # servidor en http://localhost:3000
-    npm run tailwind   # compila el CSS
+    cp .env.example .env   # y completar los valores (claves secretas)
+    npm run crear-admin    # crea el usuario administrador con los datos del .env
+    npm run dev            # servidor en http://localhost:3000
+    npm run tailwind       # compila el CSS
 
 ## Estructura
 
@@ -64,3 +66,44 @@ Ejemplo de body para crear un producto:
 ```
 
 Los errores devuelven `{ "error": "mensaje" }` (y `detalles` con la lista de problemas si son errores de validación).
+
+## Seguridad (Sprint 6)
+
+- **Usuarios** en la tabla `users` de SQLite, con rol `consumer` (por defecto) o `admin`.
+  Las contraseñas se guardan hasheadas con **bcrypt**; nunca en texto plano.
+- **Variables de entorno** en `.env` (no se sube a git; ver `.env.example`): `SESSION_SECRET`, `JWT_SECRET`, `JWT_EXPIRES_IN`, datos del admin.
+  Si un valor tiene `#` o espacios, va entre comillas.
+- La API usa **JWT** y las vistas EJS usan **sesiones** (`express-session`). Las dos validan las credenciales con el mismo servicio (`src/services/authService.js`).
+
+### Endpoints de autenticación
+
+| Método | Ruta | Descripción | Respuesta |
+|---|---|---|---|
+| POST | `/api/auth/register` | Registra un usuario (`nombre`, `apellido`, `email`, `password`) con rol consumer | 201 / 400 / 409 (email repetido) |
+| POST | `/api/auth/login` | `{ "email", "password" }` → devuelve `{ token, tokenType, expiresIn, usuario }` | 200 / 400 / 401 |
+| GET | `/api/auth/me` | Datos del usuario del token | 200 / 401 |
+
+### Endpoints protegidos
+
+Se manda el token en la cabecera `Authorization: Bearer <token>`.
+
+| Ruta | Middleware | Sin token / token inválido o vencido | Usuario consumer | Admin |
+|---|---|---|---|---|
+| `GET /api/auth/me` | `verifyToken` | 401 | 200 | 200 |
+| `POST/PUT/DELETE /api/products` | `verifyToken` + `requireAdmin` | 401 | 403 | 200 / 201 |
+| `POST/PUT/DELETE /api/categories` | `verifyToken` + `requireAdmin` | 401 | 403 | 200 / 201 |
+
+Los `GET` de productos, categorías y `/api/stats` siguen siendo públicos.
+
+### Acceso a las vistas (sesión)
+
+| Funcionalidad | Anónimo | Autenticado | Admin |
+|---|---|---|---|
+| Home, productos, categorías, búsqueda | ✅ | ✅ | ✅ |
+| Login (`/login`) y registro (`/register`) | ✅ | ❌ (va al inicio) | ❌ (va al inicio) |
+| Carrito (`/cart`) y checkout | ❌ (va al login) | ✅ | ✅ |
+| Mis pedidos (`/orders`) | ❌ (va al login) | ✅ | ✅ |
+| Administración (`/admin`) | ❌ (va al login) | ❌ (403) | ✅ |
+| Cerrar sesión (`POST /logout`) | ❌ | ✅ | ✅ |
+
+El header cambia según el rol. Los middlewares de las vistas están en `src/middlewares/sessionAuth.js` y los de la API en `src/middlewares/auth.js`.

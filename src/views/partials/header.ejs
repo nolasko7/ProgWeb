@@ -33,25 +33,46 @@
 
 
             <nav class="flex items-center gap-2 sm:gap-3">
-                
-                <div>
-                <a href="/cart/list"
-                    class="p-2 text-gray-700 hover:text-white transition-colors rounded-xl hover:bg-emerald-800 flex items-center gap-1.5 text-sm font-medium px-10"
-                    title="Ver carrito">
-                    <img src="/images/Carrito.svg" alt="Carrito" class="w-5 h-5 color">
-                    <span class="hidden sm:inline">Carrito</span>
-                    <div id="cart-count">
-                    
-                    <%= typeof contador !== 'undefined' ? contador : 0 %>
+                <% const usuario = typeof user !== 'undefined' ? user : null; %>
 
+                <% if (usuario) { %>
+                    <%# Carrito: solo usuarios autenticados %>
+                    <div>
+                    <a href="/cart/list"
+                        class="p-2 text-gray-700 hover:text-white transition-colors rounded-xl hover:bg-emerald-800 flex items-center gap-1.5 text-sm font-medium px-4"
+                        title="Ver carrito">
+                        <img src="/images/Carrito.svg" alt="Carrito" class="w-5 h-5 color">
+                        <span class="hidden sm:inline">Carrito</span>
+                        <div id="cart-count">
+                        <%= typeof contador !== 'undefined' ? contador : 0 %>
+                        </div>
+                    </a>
                     </div>
-                </a>
-                </div>
-    
-                <a href="/login"
-                    class="px-3.5 py-1.5 text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors">
-                    Ingresar
-                </a>
+
+                    <a href="/orders" class="whitespace-nowrap px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-xl transition-colors">Mis pedidos</a>
+
+                    <% if (usuario.role === 'admin') { %>
+                        <a href="/admin" class="whitespace-nowrap px-3 py-1.5 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-700 rounded-xl transition-colors">Administración</a>
+                    <% } %>
+
+                    <span class="hidden lg:inline whitespace-nowrap text-sm text-gray-600" id="saludo-usuario">Hola, <strong><%= usuario.name %></strong></span>
+
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="whitespace-nowrap px-3.5 py-1.5 text-sm font-semibold text-red-700 bg-red-50 hover:bg-red-100 rounded-xl transition-colors cursor-pointer">
+                            Cerrar sesión
+                        </button>
+                    </form>
+                <% } else { %>
+                    <%# Visitante anónimo: solo login y registro %>
+                    <a href="/login"
+                        class="px-3.5 py-1.5 text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors">
+                        Ingresar
+                    </a>
+                    <a href="/register"
+                        class="whitespace-nowrap px-3.5 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-100 rounded-xl transition-colors">
+                        Registrarse
+                    </a>
+                <% } %>
             </nav>
         </div>
     </div>

@@ -4,6 +4,7 @@ const { apiNotFound, apiServerError } = require('../../middlewares/apiErrorHandl
 const productsApiRoutes = require('./productsApiRoutes');
 const categoriesApiRoutes = require('./categoriesApiRoutes');
 const statsApiRoutes = require('./statsApiRoutes');
+const authApiRoutes = require('./authApiRoutes');
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 router.use('/products', productsApiRoutes);
 router.use('/categories', categoriesApiRoutes);
 router.use('/stats', statsApiRoutes);
+router.use('/auth', authApiRoutes);
 
 // Errores de la API: responden JSON en vez de renderizar vistas
 router.use(apiNotFound);

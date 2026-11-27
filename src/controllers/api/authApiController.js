@@ -40,4 +40,14 @@ async function login(req, res) {
     });
 }
 
-module.exports = { register, login };
+// GET /api/auth/me  (ruta protegida: requiere token)
+function me(req, res) {
+    const usuario = userService.getUsuarioPorId(req.user.id);
+    if (!usuario) {
+        return res.status(401).json({ error: 'El usuario del token ya no existe' });
+    }
+
+    res.status(200).json(usuario);
+}
+
+module.exports = { register, login, me };

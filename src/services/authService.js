@@ -37,4 +37,12 @@ function generarToken(usuario) {
     return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN, subject: String(usuario.id) });
 }
 
-module.exports = { verificarCredenciales, generarToken, JWT_EXPIRES_IN };
+/**
+ * Verifica que el token sea auténtico y no esté vencido.
+ * Devuelve el payload o lanza el error de jsonwebtoken (TokenExpiredError / JsonWebTokenError).
+ */
+function verificarToken(token) {
+    return jwt.verify(token, JWT_SECRET);
+}
+
+module.exports = { verificarCredenciales, generarToken, verificarToken, JWT_EXPIRES_IN };

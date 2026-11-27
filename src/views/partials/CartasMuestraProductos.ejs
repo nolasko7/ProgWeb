@@ -1,16 +1,23 @@
-
-
-
-<div class="flex md:block gap-3 border border-gray-300 rounded-xl p-3 bg-white shadow-xl">
-    
-    <a href="/product/<%= producto.id%>"><img src="<%= producto.images_main || producto.image || '/images/images.jpg' %>" alt="<%=producto.name%>"
-        class="w-20 h-20 flex-shrink-0 rounded-lg object-cover md:w-full md:h-68 md:rounded-none"> </a>
-    <div class="flex flex-col md:flex-row md:justify-between gap-1 md:gap-2 md:mt-2">
-        <p class="text-sm font-semibold text-gray-900 "><%=producto.name%></p>
-        <p class="text-sm leading-tight md:border-l md:border-gray-200 md:pl-2 md:w-55">
-        <span class="font-semibold text-gray-900"><%=producto.price%></span>
-        <span class="block text-[10px] text-gray-500 uppercase">Puntos</span>
-        <span class="block text-[10px] text-black uppercase font-bold py-3 ">Stock: <%= producto.stock %></span>
-        </p>
+<%# Tarjeta chica de producto (productos relacionados / también te puede interesar en la página de producto) %>
+<a href="/product/<%= producto.id %>" class="group flex flex-col h-full bg-white border border-gray-200 rounded-2xl p-3 shadow-md hover:shadow-xl transition-all duration-300">
+    <div class="aspect-square w-full overflow-hidden rounded-xl bg-gray-50 mb-3">
+        <img
+            src="<%= producto.images_main || '/images/images.jpg' %>"
+            alt="<%= producto.name %>"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='/images/images.jpg';">
     </div>
-</div>
+    <p class="text-sm font-semibold text-gray-800 leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-emerald-600">
+        <%= producto.name %>
+    </p>
+    <div class="mt-auto pt-2 flex items-end justify-between gap-2">
+        <p>
+            <span class="text-lg font-black text-gray-900"><%= producto.price %></span>
+            <span class="text-[10px] font-bold text-gray-500 uppercase">puntos</span>
+        </p>
+        <span class="text-[10px] font-bold uppercase <%= producto.stock > 0 ? 'text-gray-700' : 'text-red-500' %>">
+            Stock: <%= producto.stock %>
+        </span>
+    </div>
+</a>

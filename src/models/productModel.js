@@ -4,7 +4,7 @@
 
 function productosRandom(id){
     
-    const productosDisponibles = database.prepare("SELECT * FROM products ").all(); // hago esto ya que no tengo una llamada que me productos ramdom 
+    const productosDisponibles = database.prepare("SELECT p.*, c.name AS category_name FROM products p LEFT JOIN categories c ON c.id = p.id_Category").all(); // hago esto ya que no tengo una llamada que me productos ramdom 
     
         const filtrados = id === undefined
         ? productosDisponibles
@@ -103,12 +103,13 @@ function ordenarProductos(categoria, orden) {
 
 
 function productosMasLlevados(){
-    return database.prepare("SELECT * FROM products ORDER BY maspedido DESC LIMIT 5").all();
+    return database.prepare("SELECT p.*, c.name AS category_name FROM products p LEFT JOIN categories c ON c.id = p.id_Category ORDER BY p.maspedido DESC LIMIT 5").all();
 }
 
 
 function getTodosProductos(){
-    return database.prepare("SELECT * FROM products").all();
+    // trae también el nombre de la categoría (category_name) para mostrarlo en las tarjetas y en la API
+    return database.prepare("SELECT p.*, c.name AS category_name FROM products p LEFT JOIN categories c ON c.id = p.id_Category").all();
 }
 
 function getProductoPorId(id){

@@ -2,7 +2,7 @@
 require('dotenv').config({ quiet: true });
 
 // Variables que la app necesita sí o sí para arrancar (las claves secretas NO van en el código)
-const REQUERIDAS = ['SESSION_SECRET'];
+const REQUERIDAS = ['SESSION_SECRET', 'JWT_SECRET'];
 
 const faltantes = REQUERIDAS.filter(nombre => !process.env[nombre]);
 if (faltantes.length > 0) {
@@ -14,5 +14,7 @@ if (faltantes.length > 0) {
 module.exports = {
     PORT: process.env.PORT || 3000,
     SESSION_SECRET: process.env.SESSION_SECRET,
-    BCRYPT_SALT_ROUNDS: Number(process.env.BCRYPT_SALT_ROUNDS) || 10
+    BCRYPT_SALT_ROUNDS: Number(process.env.BCRYPT_SALT_ROUNDS) || 10,
+    JWT_SECRET: process.env.JWT_SECRET,
+    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '2h'
 };
